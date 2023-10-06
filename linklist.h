@@ -12,7 +12,6 @@ private:
     node *head;
 
 public:
-    node* gethead() {return head;}
     LinkedList()
     {
         head = NULL;
@@ -37,10 +36,13 @@ public:
     node *search(string sbd, string name)
     {
         node *temp = head;
-        while (temp!= NULL && temp->data.getsbd() != sbd)
+        while (temp!= NULL)
+           {
+            if (temp->data.getsbd().find(sbd) != string::npos && temp->data.getname().find(name) != string :: npos) return temp;
+            else
             temp = temp->next;
-        if (temp!=NULL) return temp;
-        else return NULL;
+            }
+        return NULL;
     }
     bool Delete(string sbd, string name)
     {
@@ -102,6 +104,17 @@ public:
             return false;
         }
     }
+    bool ktra(string cccd)
+{
+    node *p = head;
+    while (p != nullptr)
+    {
+        if (p->data.getcccd().find(cccd) != string::npos)
+            return true;
+        p = p->next;
+    }
+    return false;
+}
     void searchinf()
     {
         string c;
@@ -345,4 +358,3 @@ void LinkedList::ghifile(){
         cout << "Không thể mở file." << endl;
     }
 }
-
