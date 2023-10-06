@@ -37,12 +37,10 @@ public:
     node *search(string sbd, string name)
     {
         node *temp = head;
-        while (temp->data.getsbd() != sbd)
+        while (temp!= NULL && temp->data.getsbd() != sbd)
             temp = temp->next;
-        if (temp->data.getname() == name)
-            return temp;
-        else
-            return NULL;
+        if (temp!=NULL) return temp;
+        else return NULL;
     }
     bool Delete(string sbd, string name)
     {
@@ -51,7 +49,7 @@ public:
         {
             node *pre;
             node *temp = head;
-            while (p->data.getsbd() != temp->data.getsbd())
+            while (temp!=NULL && p->data.getsbd() != temp->data.getsbd())
             {
                 pre = temp;
                 temp = temp->next;
@@ -235,7 +233,7 @@ public:
                 cin.ignore();
                 string gt;
                 node *p = head;
-                cout << "Bạn muốn hiển thị giới tính nào (nam/nữ): ";
+                cout << "Bạn muốn hiển thị giới tính nào (na/n): ";
                 getline(cin, gt);
                 for (int i = 0; i < gt.length(); i++)
                 {
@@ -243,7 +241,7 @@ public:
                 }
                 while (p != nullptr)
                 {
-                    if ((gt == "nam" && p->data.getgt() == 0) || (gt == "nữ" && p->data.getgt() == 1))
+                    if ((gt == "na" && p->data.getgt() == 0) || (gt == "n" && p->data.getgt() == 1))
                     {
                         p->data.display();
                     }
