@@ -9,6 +9,29 @@
 #include "linklist.h"
 using namespace std;
 
+
+string capitalizeFirstLetter(string str) {
+    int len = str.length();
+    if (len == 0 || str[0] == ' ') {
+        return str;
+    }
+    str[0] = toupper(str[0]);
+    for (int i = 1; i < len; i++) {
+        if (str[i] == ' ' && isalpha(str[i + 1])) {
+            str[i + 1] = toupper(str[i + 1]);
+        }
+    }
+    return str;
+}
+
+void signin(string &name, string &sbd){
+    fflush(stdin);
+            cout << "Tên: ";
+            getline(cin, name);
+            name = capitalizeFirstLetter(name);
+            cout << "sbd: ";
+            getline(cin, sbd);
+}
 void editinfor(LinkedList &ds, string sbd, string name)
 {
     node *p = ds.search(sbd, name);
@@ -140,22 +163,12 @@ void editinfor(LinkedList &ds, string sbd, string name)
             }
             break;
         }
-        cout << "bạn có muốn tìm kiếm thông tin tiếp hay không?(y/n)";
+        cout << "bạn có muốn sửa thông tin nào nữa không?(y/n)";
         cin >> c;
     } while (c == "y" || c == "Y");
 }
 
-bool ktra(LinkedList &ds, string cccd)
-{
-    node *p = ds.gethead();
-    while (p != nullptr)
-    {
-        if (p->data.getcccd().find(cccd) != string::npos)
-            return true;
-        p = p->next;
-    }
-    return false;
-}
+
 int main()
 {
     LinkedList danhsach;
@@ -208,7 +221,7 @@ int main()
             do
             {
                  ts.input();
-                if (ktra(danhsach, ts.getcccd()) == true)
+                if (danhsach.ktra(ts.getcccd()) == true)
                    { cout << "Đã tồn tại số cccd này" << endl;
                 cout << "bạn có muốn nhập lại hay không ? (y/n) ";
                 cin >> c;}
@@ -230,15 +243,12 @@ int main()
                 cout << "-";
             cout << endl;
             cout << "Bạn muốn xóa thông tin của ai:" << endl;
-            fflush(stdin);
-            cout << "Tên: ";
-            getline(cin, name);
-            cout << "sbd: ";
-            getline(cin, sbd);
+            signin(name, sbd);
             if (danhsach.search(sbd, name) != NULL)
             {
                 if (danhsach.Delete(sbd, name) == true)
-                    cout << "Đã xóa thành công\n";
+                {danhsach.ghifile();
+                    cout << "Đã xóa thành công\n";}
                 else
                     cout << "Không xóa được thông tin này" << endl;
             }
@@ -253,14 +263,11 @@ int main()
                 cout << "-";
             cout << endl;
             cout << "Bạn muốn sửa thông tin của ai:" << endl;
-            fflush(stdin);
-            cout << "Tên: ";
-            getline(cin, name);
-            cout << "sbd: ";
-            getline(cin, sbd);
+            signin(name, sbd);
             if (danhsach.search(sbd, name) != NULL)
             {
                 editinfor(danhsach, sbd, name);
+                danhsach.ghifile();
                 cout << "Đã cập nhật thông tin\n";
             }
             else
