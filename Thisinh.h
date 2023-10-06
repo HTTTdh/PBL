@@ -23,7 +23,6 @@ public:
     void sethoa(float hoa);
     float gethoa();
     void input();
-    void nhapsbd();
     void display();
 };
 
