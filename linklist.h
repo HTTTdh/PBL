@@ -5,9 +5,26 @@
 #include "node.h"
 using namespace std;
 
+void Form()
+{
+    cout << "+";
+    for (int i = 0; i < 153; i++)
+        cout << "-";
+    cout << "+" << endl;
+    cout << "|" << setw(15) << "Tên" << setw(20) << "|";
+    cout << setw(10) << "CCCD" << setw(10) << "|";
+    cout << setw(5) << "GT" << setw(3) << "|";
+    cout << setw(15) << "Ngày Sinh" << setw(5) << "|";
+    cout << setw(17) << "Địa Chỉ" << setw(8) << "|";
+    cout << setw(8) << "SBD" << setw(8) << "|";
+    cout << setw(8) << "Toán" << setw(3) << "|";
+    cout << setw(6) << "Lý" << setw(3) << "|";
+    cout << setw(7) << "Hóa" << setw(3) << "|";
+    cout << setw(9) << "Tổng" << setw(3) << "|" << endl;
+}
 class LinkedList
 {
-private:
+public:
     node *head;
 
 public:
@@ -65,6 +82,7 @@ public:
     }
     void xuat()
     {
+        Form();
         node *temp = head;
         while (temp != NULL)
         {
@@ -108,8 +126,8 @@ public:
         do
         {
             system("cls");
-            cout << setw(105) <<  "CÁC THÔNG TIN CẦN TÌM" << endl;
-            cout <<setw(75) <<  "+";
+            cout << setw(105) << "CÁC THÔNG TIN CẦN TÌM" << endl;
+            cout << setw(75) << "+";
             for (int i = 1; i <= 30; ++i)
                 cout << "-";
             cout << "+" << endl;
@@ -146,7 +164,7 @@ public:
                 node *p = head;
                 cout << "nhập tên bạn muốn hiển thị: ";
                 getline(cin, name);
-                
+                Form();
                 while (p != nullptr)
                 {
                     if (p->data.getname().find(name) != string::npos)
@@ -155,6 +173,10 @@ public:
                     }
                     p = p->next;
                 }
+                cout << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                cout << "|" << endl;
                 system("pause");
                 break;
             }
@@ -165,6 +187,7 @@ public:
                 node *p = head;
                 cout << "nhập địa chỉ bạn muốn hiển thị: ";
                 getline(cin, address);
+                Form();
                 while (p != nullptr)
                 {
                     if (p->data.getaddress().find(address) != string::npos)
@@ -173,6 +196,10 @@ public:
                     }
                     p = p->next;
                 }
+                cout << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                cout << "|" << endl;
                 system("pause");
                 break;
             }
@@ -183,6 +210,7 @@ public:
                 node *p = head;
                 cout << "nhập những số trong cccd bạn muốn hiển thị: ";
                 getline(cin, cccd);
+                Form();
                 while (p != nullptr)
                 {
                     if (p->data.getcccd().find(cccd) != string::npos)
@@ -191,6 +219,10 @@ public:
                     }
                     p = p->next;
                 }
+                cout << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                cout << "|" << endl;
                 system("pause");
                 break;
             }
@@ -201,6 +233,7 @@ public:
                 node *p = head;
                 cout << "nhập những số có trong số báo danh mà bạn muốn hiển thị: ";
                 getline(cin, sbd);
+                Form();
                 while (p != nullptr)
                 {
                     if (p->data.getsbd().find(sbd) != string::npos)
@@ -209,6 +242,10 @@ public:
                     }
                     p = p->next;
                 }
+                cout << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                cout << "|" << endl;
                 system("pause");
                 break;
             }
@@ -219,6 +256,7 @@ public:
                 node *p = head;
                 cout << "nhập năm sinh bạn muốn hiển thị: ";
                 cin >> ns;
+                Form();
                 while (p != nullptr)
                 {
                     if (p->data.getdate().year == ns)
@@ -227,6 +265,10 @@ public:
                     }
                     p = p->next;
                 }
+                cout << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                cout << "|" << endl;
                 system("pause");
                 break;
             }
@@ -237,6 +279,7 @@ public:
                 node *p = head;
                 cout << "Bạn muốn hiển thị giới tính nào (nam/nu): ";
                 getline(cin, gt);
+                Form();
                 for (int i = 0; i < gt.length(); i++)
                 {
                     gt[i] = tolower(gt[i]);
@@ -249,6 +292,10 @@ public:
                     }
                     p = p->next;
                 }
+                cout << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                cout << "|" << endl;
                 system("pause");
                 break;
             }
