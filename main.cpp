@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -10,22 +9,7 @@
 #include<graphics.h>
 using namespace std;
 
-void Form(){
-    cout << "+";
-        for (int i = 0; i < 153; i++)
-            cout << "-";
-        cout << "+" << endl;
-        cout << "|" << setw(15) << "Tên" << setw(20) << "|";
-        cout << setw(10) << "CCCD" << setw(10) << "|";
-        cout << setw(5) << "GT" << setw(3) << "|";
-        cout << setw(15) << "Ngày Sinh" << setw(5) << "|";
-        cout << setw(17) << "Địa Chỉ" << setw(8) << "|";
-        cout << setw(8) << "SBD" << setw(8) << "|";
-        cout << setw(8) << "Toán" << setw(3) << "|";
-        cout << setw(6) << "Lý" << setw(3) << "|";
-        cout << setw(7) << "Hóa" << setw(3) << "|";
-        cout << setw(9) << "Tổng" << setw(3) << "|" << endl;
-}
+
 string capitalizeFirstLetter(string str) {
     int len = str.length();
     if (len == 0 || str[0] == ' ') {
