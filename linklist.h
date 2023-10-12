@@ -2,9 +2,8 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
-#include"node.h"
+#include "node.h"
 using namespace std;
-
 
 class LinkedList
 {
@@ -36,12 +35,13 @@ public:
     node *search(string sbd, string name)
     {
         node *temp = head;
-        while (temp!= NULL)
-           {
-            if (temp->data.getsbd().find(sbd) != string::npos && temp->data.getname().find(name) != string :: npos) return temp;
+        while (temp != NULL)
+        {
+            if (temp->data.getsbd().find(sbd) != string::npos && temp->data.getname().find(name) != string ::npos)
+                return temp;
             else
-            temp = temp->next;
-            }
+                temp = temp->next;
+        }
         return NULL;
     }
     bool Delete(string sbd, string name)
@@ -51,7 +51,7 @@ public:
         {
             node *pre;
             node *temp = head;
-            while (temp!=NULL && p->data.getsbd() != temp->data.getsbd())
+            while (temp != NULL && p->data.getsbd() != temp->data.getsbd())
             {
                 pre = temp;
                 temp = temp->next;
@@ -65,30 +65,16 @@ public:
     }
     void xuat()
     {
-    cout << "+";
-    for (int i = 0; i < 153; i++)
-        cout << "-";
-    cout << "+" << endl;
-    cout << "|" << setw(15) << "Tên" << setw(20) << "|";
-    cout << setw(10) << "CCCD" << setw(10) << "|";
-    cout << setw(5) << "GT" << setw(3) << "|";
-    cout << setw(15) << "Ngày Sinh" << setw(5) << "|";
-    cout << setw(17) << "Địa Chỉ" << setw(8) << "|";
-    cout << setw(8) << "SBD" << setw(8) << "|";
-    cout << setw(8) << "Toán" << setw(3) << "|";
-    cout << setw(6) << "Lý" << setw(3) << "|";
-    cout << setw(7) << "Hóa" << setw(3) << "|";
-    cout << setw(9) << "Tổng" << setw(3) << "|" << endl;
-    node *temp = head;
+        node *temp = head;
         while (temp != NULL)
         {
             temp->data.display();
             temp = temp->next;
         }
-    cout << "|";
-     for (int i = 0; i < 153; i++)
-        cout << "-";
-    cout << "|" << endl;
+        cout << "|";
+        for (int i = 0; i < 153; i++)
+            cout << "-";
+        cout << "|" << endl;
     }
     void docfile();
     void ghifile();
@@ -105,16 +91,16 @@ public:
         }
     }
     bool ktra(string cccd)
-{
-    node *p = head;
-    while (p != nullptr)
     {
-        if (p->data.getcccd().find(cccd) != string::npos)
-            return true;
-        p = p->next;
+        node *p = head;
+        while (p != nullptr)
+        {
+            if (p->data.getcccd().find(cccd) != string::npos)
+                return true;
+            p = p->next;
+        }
+        return false;
     }
-    return false;
-}
     void searchinf()
     {
         string c;
@@ -122,26 +108,28 @@ public:
         do
         {
             system("cls");
-            cout << "\n\n\t CÁC THÔNG TIN CẦN TÌM\n\n\t+";
+            cout << setw(105) <<  "CÁC THÔNG TIN CẦN TÌM" << endl;
+            cout <<setw(75) <<  "+";
             for (int i = 1; i <= 30; ++i)
                 cout << "-";
             cout << "+" << endl;
-            cout << "\t|   1. Tên                     |\n";
-            cout << "\t|" << setw(31) << "|" << endl;
-            cout << "\t|   2. Địa chỉ                 |\n ";
-            cout << "\t|" << setw(31) << "|" << endl;
-            cout << "\t|   3. CCCD                    |\n";
-            cout << "\t|" << setw(31) << "|" << endl;
-            cout << "\t|   4. SBD                     |\n";
-            cout << "\t|" << setw(31) << "|" << endl;
-            cout << "\t|   5. Năm sinh                |\n";
-            cout << "\t|" << setw(31) << "|" << endl;
-            cout << "\t|   6. Giới tính               |\n";
-            cout << "\t+";
+            cout << setw(107) << "|   1. Tên                     |" << endl;
+            cout << setw(75) << "|" << setw(31) << "|" << endl;
+            cout << setw(111) << "|   2. Địa chỉ                 |" << endl;
+            cout << setw(75) << "|" << setw(31) << "|" << endl;
+            cout << setw(107) << "|   3. CCCD                    |\n";
+            cout << setw(75) << "|" << setw(31) << "|" << endl;
+            cout << setw(107) << "|   4. SBD                     |\n";
+            cout << setw(75) << "|" << setw(31) << "|" << endl;
+            cout << setw(108) << "|   5. Năm sinh                |\n";
+            cout << setw(75) << "|" << setw(31) << "|" << endl;
+            cout << setw(109) << "|   6. Giới tính               |" << endl;
+            cout << setw(75) << "+";
             for (int i = 1; i <= 30; ++i)
                 cout << "-";
             cout << "+" << endl;
-            cout << "\nMời nhập lựa chọn :";
+            cout << endl;
+            cout << setw(80) << "Mời nhập lựa chọn :";
             cin >> lc;
             while (lc < 0 || lc > 6)
             {
@@ -158,6 +146,7 @@ public:
                 node *p = head;
                 cout << "nhập tên bạn muốn hiển thị: ";
                 getline(cin, name);
+                
                 while (p != nullptr)
                 {
                     if (p->data.getname().find(name) != string::npos)
@@ -246,7 +235,7 @@ public:
                 cin.ignore();
                 string gt;
                 node *p = head;
-                cout << "Bạn muốn hiển thị giới tính nào (na/n): ";
+                cout << "Bạn muốn hiển thị giới tính nào (nam/nu): ";
                 getline(cin, gt);
                 for (int i = 0; i < gt.length(); i++)
                 {
@@ -254,7 +243,7 @@ public:
                 }
                 while (p != nullptr)
                 {
-                    if ((gt == "na" && p->data.getgt() == 0) || (gt == "n" && p->data.getgt() == 1))
+                    if ((gt == "nam" && p->data.getgt() == 0) || (gt == "nu" && p->data.getgt() == 1))
                     {
                         p->data.display();
                     }
@@ -289,13 +278,15 @@ void LinkedList::docfile()
             line.erase(0, pos + 1);
 
             pos = line.find(",");
-            try {
+            try
+            {
                 ts.setgt(stoi(line.substr(0, pos)));
             }
-            catch (const invalid_argument& e) {
+            catch (const invalid_argument &e)
+            {
                 cerr << "Lỗi: " << e.what() << " - Giá trị không hợp lệ: " << line.substr(0, pos) << std::endl;
                 // Xử lý lỗi ở đây (ví dụ: gán giá trị mặc định)
-                ts.setgt(0); 
+                ts.setgt(0);
             }
             line.erase(0, pos + 1);
 
@@ -333,28 +324,31 @@ void LinkedList::docfile()
 
         inputFile.close();
     }
-    else {
+    else
+    {
         cout << "Không thể mở file." << endl;
     }
 }
-void LinkedList::ghifile(){
+void LinkedList::ghifile()
+{
     ofstream outputFile;
     outputFile.open("dsthisinh.txt", ios::out);
     if (outputFile.is_open())
     {
-        node* current = head; 
+        node *current = head;
         while (current != NULL)
         {
             outputFile << current->data.getname() << "," << current->data.getcccd() << "," << current->data.getgt() << ","
                        << current->data.getdate().day << "/" << current->data.getdate().month << "/" << current->data.getdate().year
                        << "," << current->data.getaddress() << "," << current->data.getsbd() << "," << current->data.getto()
                        << "," << current->data.getli() << "," << current->data.gethoa() << endl;
-            
-            current = current->next; 
+
+            current = current->next;
         }
         outputFile.close();
     }
-    else {
+    else
+    {
         cout << "Không thể mở file." << endl;
     }
 }
