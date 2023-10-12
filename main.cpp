@@ -7,9 +7,25 @@
 #include "person.h"
 #include "Thisinh.h"
 #include "linklist.h"
+#include<graphics.h>
 using namespace std;
 
-
+void Form(){
+    cout << "+";
+        for (int i = 0; i < 153; i++)
+            cout << "-";
+        cout << "+" << endl;
+        cout << "|" << setw(15) << "Tên" << setw(20) << "|";
+        cout << setw(10) << "CCCD" << setw(10) << "|";
+        cout << setw(5) << "GT" << setw(3) << "|";
+        cout << setw(15) << "Ngày Sinh" << setw(5) << "|";
+        cout << setw(17) << "Địa Chỉ" << setw(8) << "|";
+        cout << setw(8) << "SBD" << setw(8) << "|";
+        cout << setw(8) << "Toán" << setw(3) << "|";
+        cout << setw(6) << "Lý" << setw(3) << "|";
+        cout << setw(7) << "Hóa" << setw(3) << "|";
+        cout << setw(9) << "Tổng" << setw(3) << "|" << endl;
+}
 string capitalizeFirstLetter(string str) {
     int len = str.length();
     if (len == 0 || str[0] == ' ') {
@@ -180,32 +196,35 @@ int main()
     do
     {
         system("cls");
-        cout << "\t~- QUẢN LÝ ĐIỂM THI CỦA CÁC THÍ SINH VÀO MỘT TRƯỜNG ĐẠI HỌC -~" << endl;
-        for (int i = 1; i <= 100; ++i)
+        cout <<setw(135) << "~- QUẢN LÝ ĐIỂM THI CỦA CÁC THÍ SINH VÀO MỘT TRƯỜNG ĐẠI HỌC -~"  << endl;
+        cout << setw(27);
+        for (int i = 1; i <= 125; ++i)
             cout << "-";
-        cout << "\n\n\t\t DANH SÁCH CÁC THAO TÁC\n\n\t+";
+        cout << setw(124) << "DANH SÁCH CÁC THAO TÁC";
+        cout << setw(140) << "+";
         for (int i = 1; i <= 50; ++i)
             cout << "-";
         cout << "+" << endl;
-        cout << "\t|   0. Thoát.                                      |\n";
-        cout << "\t|" << setw(51) << "|" << endl;
-        cout << "\t|   1. Thêm 1 thí sinh vào danh sách.              |\n";
-        cout << "\t|" << setw(51) << "|" << endl;
-        cout << "\t|   2. Xoá 1 thí sinh khỏi danh sách.              |\n ";
-        cout << "\t|" << setw(51) << "|" << endl;
-        cout << "\t|   3. Sửa thông tin 1 thí sinh.                   |\n";
-        cout << "\t|" << setw(51) << "|" << endl;
-        cout << "\t|   4. Xuất thông tin của một thí sinh.            |\n";
-        cout << "\t|" << setw(51) << "|" << endl;
-        cout << "\t|   5. Tìm kiếm các thông tin của thí sinh.        |\n";
-        cout << "\t|" << setw(51) << "|" << endl;
-        cout << "\t+";
+        cout << setw(114) <<"|   1. Thêm 1 thí sinh vào danh sách.              |\n";
+        cout << setw(58) << "|" << setw(51) << "|" << endl;
+        cout << setw(116) <<"|   2. Xoá 1 thí sinh khỏi danh sách.              |\n ";
+        cout << setw(57) << "|" << setw(51) << "|" << endl;
+        cout << setw(114) <<"|   3. Sửa thông tin 1 thí sinh.                   |\n";
+        cout << setw(58) << "|" << setw(51) << "|" << endl;
+        cout << setw(118) <<"|   4. Xuất thông tin của một thí sinh.            |\n";
+        cout << setw(58) << "|" << setw(51) << "|" << endl;
+        cout << setw(118) <<"|   5. Tìm kiếm các thông tin của thí sinh.        |\n";
+        cout << setw(58) << "|" << setw(51) << "|" << endl;
+        cout << setw(111) <<"|   0. Thoát.                                      |\n";
+        cout << setw(58) << "|" << setw(51) << "|" << endl;
+        cout << setw(58) <<"+";
         for (int i = 1; i <= 50; ++i)
             cout << "-";
         cout << "+" << endl;
-        cout << "\nMời nhập lựa chọn : ";
+        cout << endl;
+        cout << setw(80) << "Mời nhập lựa chọn : ";
         cin >> option;
-        while (option < 0 || option > 6)
+        while (option < 0 || option > 5)
         {
             fflush(stdin);
             cout << "Lựa chọn của bạn là không hợp lệ!!! \n Hãy nhập lại: ";
@@ -277,6 +296,7 @@ int main()
         }
         case 4:
         {
+            Form();
             danhsach.xuat();
             system("pause");
             break;
