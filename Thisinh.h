@@ -10,7 +10,9 @@ class ThiSinh : public Person
 private:
     string sbd;
     float to, li, ho;
-
+    float sum ;
+    int n;
+    string nv[5];
 public:
     ThiSinh();
     ThiSinh(string cccd, string name, Date date, string address, int gt, string sbd, float to, float li, float ho);
@@ -22,6 +24,7 @@ public:
     float getli();
     void sethoa(float hoa);
     float gethoa();
+    float getsum();
     void input();
     void display();
 };
@@ -32,8 +35,11 @@ ThiSinh::ThiSinh() : Person()
     sbd = "";
     li = 0;
     ho = 0;
+    n=0;
 }
-ThiSinh::ThiSinh(string cccd, string name, Date date, string address, int gt, string sbd, float to, float li, float ho) : Person(cccd, name, date, address, gt), sbd(sbd), to(to), li(li), ho(ho){};
+ThiSinh::ThiSinh(string cccd, string name, Date date, string address, int gt, string sbd, float to, float li, float ho) 
+: Person(cccd, name, date, address, gt), sbd(sbd), to(to), li(li), ho(ho){
+};
 void ThiSinh::setsbd(string sbd)
 {
     this->sbd = sbd;
@@ -66,6 +72,9 @@ float ThiSinh::gethoa()
 {
     return ho;
 }
+float ThiSinh::getsum(){
+    return to+li+ho;
+}
 void ThiSinh::input()
 {
     for (int i = 0; i < 50; i++)
@@ -81,6 +90,7 @@ void ThiSinh::input()
     cin >> li;
     cout << "Nhập điểm hóa: ";
     cin >> ho;
+    cout << endl;
     for (int i = 0; i < 50; i++)
         cout << "-";
     cout << endl;
@@ -100,5 +110,5 @@ void ThiSinh::display()
     cout << setw(7) << getto() << setw(3) << "|";
     cout << setw(5) << getli() << setw(3) << "|";
     cout << setw(6) << gethoa() << setw(3) << "|";
-    cout << setw(5) << to + li + ho << setw(5) << "|" << endl;
+    cout << setw(5) << getsum() << setw(5) << "|" << endl;
 }

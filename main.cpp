@@ -6,23 +6,9 @@
 #include "person.h"
 #include "Thisinh.h"
 #include "linklist.h"
+#include "Nganh.h"
 #include<graphics.h>
 using namespace std;
-
-
-string capitalizeFirstLetter(string str) {
-    int len = str.length();
-    if (len == 0 || str[0] == ' ') {
-        return str;
-    }
-    str[0] = toupper(str[0]);
-    for (int i = 1; i < len; i++) {
-        if (str[i] == ' ' && isalpha(str[i + 1])) {
-            str[i + 1] = toupper(str[i + 1]);
-        }
-    }
-    return str;
-}
 
 void signin(string &name, string &sbd){
     fflush(stdin);

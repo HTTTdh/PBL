@@ -1,44 +1,10 @@
-Hoang Tuan Anh, 040346278912, 0, 02/07/2004, Nghe An, 29416473, 8, 7.75, 8.25 
-Mai Thi Kim Anh,040373829102, 1, 03/02/2004, Can Tho, 55417342, 6.6, 7.5, 8.0
-Nguyen Thi Minh Anh, 041927302729, 1, 31/10/2004, Nghe An, 29834295, 9.0, 7.0, 8.5
-Nguyen Tuan Anh, 041829365271, 0, 14/06/2004, Thai Nguyen, 12516387, 8.4, 7.0, 9.5
-Vo Quoc Anh, 043829887216, 0, 22/12/2004, Bac Giang, 18128945, 7.8, 8.0, 7.25
-Hoang Tan Bao,040371947399, 0, 02/08/2004, Ninh Binh, 27634285, 4.6, 6.5, 7.0
-Nguyen Thi Thanh Binh, 040343189567, 1, 20/02/2003, Thanh Hoa, 28417483, 8.8, 9.0, 8.0
-Vo Quoc Cuong, 041054287354, 0, 1/06/2004, Bac Kan, 11723290, 9.2, 8.0, 8.0
-Hoang Thi Thuy Duong, 049187427534, 1, 20/07/2004, Quang Nam, 34281546, 8.4, 7.75, 9.0 
-Nguyen Hoang Dat, 040391827463, 0, 30/01/2003, Da Nang, 04231872, 6.2, 7.25, 7.5 
-Nguyen Huy Hoang, 040392715382, 0, 05/02/2002, Ca Mau, 61934289, 9.2, 7.75, 8.25 
-Nguyen Van Hoang, 048261728455, 0, 23/04/2004, Binh Duong, 44617584, 3.6, 5.5, 6.25
-Phung Ngoc Hung, 040291768411, 0, 20/10/2001, Ha Tinh, 30724346, 8.6, 8.75, 9.0
-Vo Thi Khanh Huyen, 042971529621, 1, 12/12/2002, Bac Ninh, 19452948, 6.4, 5.5, 6.0
-Cao Minh Hung, 049274633182, 0, 10/03/2004, Gia Lai, 38528564, 8.0, 7.25, 8.0
-Nguyen Duy Hung, 040283518362, 0, 12/06/2004, Hoa Binh, 23527887, 6.8, 7.5, 7.0
-Nguyen Quoc Khanh, 042546193527, 0, 05/08/2004, Dong Nai, 48748352, 9.5, 8.75, 9.0
-Nguyen Dinh Khiem, 046271188725, 0, 13/04/2004, Gia Lai, 38274538, 4.4, 5.25, 4.5
-Nguyen Le Dieu Linh, 040382510452, 1, 24/07/2004, Ha Giang, 05296547, 9.4, 8.75, 9.0
-Nguyen Phuong Linh, 040262819332, 1, 20/10/2004, Hai Duong, 21318453, 7.4, 8.5, 8.0
-Nguyen Duc Luong, 042719245378, 0, 22/11/2003, Ha Tinh, 30378767, 8.4, 8.75, 9.0
-Nguyen Thi Tra My,040251637284, 1, 27/09/2004, Quang Tri, 32318352, 9.0, 8.5, 9.25
-Nguyen Sy Nam, 042418452064, 0, 08/12/2004, Nghe An, 29327813, 9.0, 8.5, 9.25 
-Tran Duc Nguyen, 044362416291, 0, 06/06/2001, Quang Nam, 34724195, 6.4, 5.75, 7.0 
-Nguyen Dinh Nhan, 048264537193, 0, 1/07/2004, Hung Yen, 22628146, 4.5, 6.25, 5.0
-Mai Thuc Nhi, 043236782416, 1, 18/05/2004, Khanh Hoa, 41286537, 6.2, 6.75, 6.0
-Nguyen Thi Quynh Nhi, 048321745382, 1, 03/04/2004, Long An, 49427483, 8.4, 7.0, 7.75
-Nguyen Le Uyen Nhi, 037285637591, 1, 30/4/2004, Quang Ninh, 17416564, 8.2, 7.5, 7.5 
-Nguyen Thi Quynh Nhu, 048212314536, 1, 15/02/2004, Nam Dinh, 25824175, 8.6, 7.25, 9.0
-Nguyen Ngoc Hoang Phuc, 046214638921, 0, 28/05/2004, Phu Tho, 15218453, 8.8, 9.25, 8.25
-Hoang Hong Quan, 042618453628, 0, 31/12/2004, Phu Yen, 39628195, 7.2, 5.75, 7.75
-Nguyen Anh Tai, 042327185632, 0, 12/11/2004, Ninh Thuan, 45317342, 8.2, 8.0, 9.0
-Nguyen Thanh Tan, 041642482516, 0, 23/02/2004, Phu Yen, 39327581, 5.2, 4.25, 6.0
-Che Ngoc Thai, 040342612175, 0, 11/05/2004, Quang Ngai, 35527153, 7.2, 6.75, 7.5  
-Nguyen Trong Thang, 040274123478, 0, 31/10/2004, Dak Lak, 40317483, 8.2, 7.5, 8.75 
-Vo The Thien, 040563128492, 0, 19/08/2004, Quang Binh, 31426473, 6.2, 7.5, 6.5
-Ho Thi Thu Thanh, 049304012028, 1, 05/01/2004, Quang Nam, 34006760, 9.2, 8.8, 8.5
-Nguyen Thi Toan, 040304012957, 1, 14/10/2004, Nghe An, 29682418, 9.6, 9.0, 8.75
-Nguyen Van Toan , 040304024516, 0, 25/07/2004, Thai Binh, 26516473, 5.2, 6.0, 5.5 
-Truong Vu Khanh Toan, 040342617452, 0, 02/11/2004, Thai Nguyen, 12173425, 8.8, 8.25, 9.5 
-Nguyen Thi Quynh Trang, 040592517384, 1, 26/01/2004, Quang Nam, 34516372, 8.0, 7.25, 8.0
-Vo Minh Trang, 040383527163, 1, 25/03/2004, Thua Thien Hue, 33517342, 7.2, 7.5, 7.0
-Hoang Cam Tu, 040264318425, 1, 21/10/2004, Da Nang, 04417483, 9.6, 9.25, 9.0
-Nguyen Canh Thanh Vinh, 043527143526, 0, 28/1/2004, Nam Dinh, 25526178, 7.6, 8.0, 8.25
+Hoang Tuan Anh, 040346278912,0,2/7/2004, Nghe An, 29416473,8,7.75,8.25,2,Cong nghe thong tin, Cong nghe thuc pham
+Mai Thi Kim Anh,040373829102,1,3/2/2004, Can Tho, 55417342,6.6,7.5,8,1,Cong nghe thong tin
+Nguyen Thi Minh Anh, 041927302729,1,31/10/2004, Nghe An, 29834295,9,7,8.5,2,Cong nghe thuc pham
+Nguyen Tuan Anh, 041829365271,0,14/6/2004, Thai Nguyen, 12516387,8.4,7,9.5,2,Cong nghe thuc pham, Ky thuat dien tu - vien thong
+Vo Quoc Anh, 043829887216,0,22/12/2004, Bac Giang, 18128945,7.8,8,7.25,1, Ky thuat dien tu - vien thong
+Hoang Tan Bao,040371947399,0,2/8/2004, Ninh Binh, 27634285,4.6,6.5,7,2,Ky thuat dien tu - vien thong, Cong nghe thong tin
+Nguyen Thi Thanh Binh, 040343189567,1,20/2/2003, Thanh Hoa, 28417483,8.8,9,8,3,Cong nghe thong tin,Ky thuat dien tu - vien thong
+Vo Quoc Cuong, 041054287354,0,1/6/2004, Bac Kan, 11723290,9.2,8,8,1,Ky thuat dien tu - vien thong
+Hoang Thi Thuy Duong, 049187427534,1,20/7/2004, Quang Nam, 34281546,8.4,7.75,9,2,Ky thuat dien tu - vien thong,Cong nghe thuc pham
+Nguyen Hoang Dat, 040391827463,0,30/1/2003, Da Nang, 04231872,6.2,7.25,7.5,1,Cong nghe thuc pham

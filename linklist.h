@@ -82,7 +82,6 @@ public:
     }
     void xuat()
     {
-        Form();
         node *temp = head;
         while (temp != NULL)
         {
