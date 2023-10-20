@@ -1,8 +1,8 @@
+#pragma once
 #include <iostream>
 #include <string>
 #include <iomanip>
 #include <fstream>
-// #include"main.cpp"
 using namespace std;
 
 struct Nganhdaotao
@@ -107,16 +107,4 @@ string capitalizeFirstLetter(string str) {
     }
     return str;
 }
- float search(string s)
-    {
-        s = capitalizeFirstLetter(s);
-        Nganhdaotao *p = pHead;
-        while (p != NULL)
-        {
-            if (p->TenNganh == s)
-                return p->DiemChuan;
-            p = p->next;
-        }
-        cout << "Không có tên ngành này" << endl;
-        return 0;
-    }
+ 

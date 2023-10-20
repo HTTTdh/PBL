@@ -29,6 +29,9 @@ public:
     void setgt(int gt);
     int getgt();
     void nhapthongtin();
+    ~Person(){
+        
+    }
 };
 
 Person::Person()

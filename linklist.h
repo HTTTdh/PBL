@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include "node.h"
+#include"Nganh.h"
 using namespace std;
 
 void Form()
@@ -80,6 +81,7 @@ public:
         else
             return false;
     }
+  
     void xuat()
     {
         node *temp = head;
@@ -95,6 +97,9 @@ public:
     }
     void docfile();
     void ghifile();
+    void check();
+    LinkedList SapXepDiem();
+    float searchnganh(string str);
     bool testempty()
     {
         if (head == NULL)
@@ -364,7 +369,15 @@ void LinkedList::docfile()
             ts.setli(stof(line.substr(0, pos)));
             line.erase(0, pos + 1);
 
-            ts.sethoa(stof(line));
+            pos = line.find(",");
+            ts.sethoa(stof(line.substr(0, pos)));
+            line.erase(0, pos + 1);
+
+            for (int i=0;i<ts.getspt();i++){
+                 pos = line.find(",");
+                ts.setnv(line.substr(0, pos),i);
+                line.erase(0, pos+1);
+            }
             insert(ts);
         }
 
@@ -376,6 +389,7 @@ void LinkedList::docfile()
     }
 }
 void LinkedList::ghifile()
+
 {
     ofstream outputFile;
     outputFile.open("dsthisinh.txt", ios::out);
@@ -387,8 +401,10 @@ void LinkedList::ghifile()
             outputFile << current->data.getname() << "," << current->data.getcccd() << "," << current->data.getgt() << ","
                        << current->data.getdate().day << "/" << current->data.getdate().month << "/" << current->data.getdate().year
                        << "," << current->data.getaddress() << "," << current->data.getsbd() << "," << current->data.getto()
-                       << "," << current->data.getli() << "," << current->data.gethoa() << endl;
-
+                       << "," << current->data.getli() << "," << current->data.gethoa() ;
+            for (int i=0;i<current->data.getspt();i++)
+            cout<< ","  << current->data.getnv(i) ;
+            cout << endl;
             current = current->next;
         }
         outputFile.close();
@@ -397,4 +413,55 @@ void LinkedList::ghifile()
     {
         cout << "Không thể mở file." << endl;
     }
+}
+float LinkedList::searchnganh(string s)
+    {
+        s = capitalizeFirstLetter(s);
+        Nganhdaotao *p = pHead;
+        while (p != NULL)
+        {
+            if (p->TenNganh == s)
+                return p->DiemChuan;
+            p = p->next;
+        }
+        cout << "Không có tên ngành này" << endl;
+        return 0;
+    }
+LinkedList LinkedList::SapXepDiem(){
+    LinkedList result;
+    for (node *temp = this->head; temp!=NULL; temp=temp->next)
+        for (node *p=temp->next;p;p=p->next)
+        {
+            if (temp->data.getsum() < p->data.getsum())
+            {
+                node *tempData;
+                tempData->data = temp->data;
+                temp->data = p->data;
+                p->data = tempData->data;
+            }
+        }
+    for (node *m = this->head; m!=NULL ;m =m->next)
+        result.insert(m->data);
+    return result;
+}
+
+void LinkedList::check(){
+    int i=0;
+    LinkedList dsdau;
+    node *temp=head;
+    while (temp!=NULL) {
+        do 
+        {
+            float dc = searchnganh(temp->data.getnv(i));
+            if (dc && temp->data.getsum() >dc ) {
+                dsdau.insert(temp->data);
+                break;
+            }
+            else if (dc) return;
+            else i++;
+        }
+        while (i< temp->data.getspt());
+        temp=temp->next;
+    }
+    dsdau.SapXepDiem();
 }

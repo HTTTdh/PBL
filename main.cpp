@@ -7,7 +7,6 @@
 #include "Thisinh.h"
 #include "linklist.h"
 #include "Nganh.h"
-#include<graphics.h>
 using namespace std;
 
 void signin(string &name, string &sbd){
@@ -155,6 +154,7 @@ void editinfor(LinkedList &ds, string sbd, string name)
 }
 
 
+
 int main()
 {
     LinkedList danhsach;
@@ -185,6 +185,12 @@ int main()
         cout << setw(58) << "|" << setw(51) << "|" << endl;
         cout << setw(118) <<"|   5. Tìm kiếm các thông tin của thí sinh.        |\n";
         cout << setw(58) << "|" << setw(51) << "|" << endl;
+        cout << setw(121) <<"|   6. Danh sách các thí sinh đậu đại học.         |\n";
+        cout << setw(58) << "|" <<setw(51) << "|" << endl;
+        cout << setw(117) <<"|   7. Danh sách các ngành đào tạo.                |\n";
+        cout << setw(58) << "|" << setw(51) << "|" << endl;           
+        cout << setw(118) <<"|   8. Sắp xếp danh sách theo điểm.                |\n";
+        cout << setw(58) << "|" << setw(51) << "|" << endl;   
         cout << setw(111) <<"|   0. Thoát.                                      |\n";
         cout << setw(58) << "|" << setw(51) << "|" << endl;
         cout << setw(58) <<"+";
@@ -194,7 +200,7 @@ int main()
         cout << endl;
         cout << setw(80) << "Mời nhập lựa chọn : ";
         cin >> option;
-        while (option < 0 || option > 5)
+        while (option < 0 || option > 8)
         {
             fflush(stdin);
             cout << "Lựa chọn của bạn là không hợp lệ!!! \n Hãy nhập lại: ";
@@ -278,6 +284,27 @@ int main()
             cout << endl;
             cout << "Bạn muốn tìm kiếm thông qua thông tin gì?" << endl;
             danhsach.searchinf();
+            system("pause");
+            break;
+        }
+        case 6:
+        {
+            danhsach.check();
+            system("pause");
+            break;
+        }
+        case 7:
+        {
+            mofile();
+            output();
+            system("pause");
+            break;
+        }
+        case 8:
+        {
+            LinkedList result;
+            result = danhsach.SapXepDiem();
+            result.xuat();
             system("pause");
             break;
         }
