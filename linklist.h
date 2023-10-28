@@ -2,8 +2,9 @@
 #include <string>
 #include <fstream>
 #include <iomanip>
-#include "node.h"
-#include"Nganh.h"
+#include"person.h"
+#include"Thisinh.h"
+#include"node.h"
 using namespace std;
 
 void Form()
@@ -25,10 +26,10 @@ void Form()
 }
 class LinkedList
 {
+   
 public:
-    node *head;
+ node *head;
 
-public:
     LinkedList()
     {
         head = NULL;
@@ -53,14 +54,12 @@ public:
     node *search(string sbd, string name)
     {
         node *temp = head;
-        while (temp != NULL)
-        {
-            if (temp->data.getsbd().find(sbd) != string::npos && temp->data.getname().find(name) != string ::npos)
-                return temp;
-            else
-                temp = temp->next;
-        }
-        return NULL;
+        while (temp->data.getsbd() != sbd)
+            temp = temp->next;
+        if (temp->data.getname() == name)
+            return temp;
+        else
+            return NULL;
     }
     bool Delete(string sbd, string name)
     {
@@ -69,7 +68,7 @@ public:
         {
             node *pre;
             node *temp = head;
-            while (temp != NULL && p->data.getsbd() != temp->data.getsbd())
+            while (p->data.getsbd() != temp->data.getsbd())
             {
                 pre = temp;
                 temp = temp->next;
@@ -81,25 +80,21 @@ public:
         else
             return false;
     }
-  
     void xuat()
     {
-        node *temp = head;
+    node *temp = head;
         while (temp != NULL)
         {
             temp->data.display();
             temp = temp->next;
         }
-        cout << "|";
-        for (int i = 0; i < 153; i++)
-            cout << "-";
-        cout << "|" << endl;
+    cout << "|";
+     for (int i = 0; i < 153; i++)
+        cout << "-";
+    cout << "|" << endl;
     }
     void docfile();
     void ghifile();
-    void check();
-    LinkedList SapXepDiem();
-    float searchnganh(string str);
     bool testempty()
     {
         if (head == NULL)
@@ -112,24 +107,15 @@ public:
             return false;
         }
     }
-    bool ktra(string cccd)
-    {
-        node *p = head;
-        while (p != nullptr)
-        {
-            if (p->data.getcccd().find(cccd) != string::npos)
-                return true;
-            p = p->next;
-        }
-        return false;
-    }
+    void sapxepdiem();
     void searchinf()
     {
+        docfile();
         string c;
         int lc;
         do
         {
-            system("cls");
+                      system("cls");
             cout << setw(105) << "CÁC THÔNG TIN CẦN TÌM" << endl;
             cout << setw(75) << "+";
             for (int i = 1; i <= 30; ++i)
@@ -161,7 +147,7 @@ public:
             }
             switch (lc)
             {
-            case 1:
+           case 1:
             {
                 fflush(stdin);
                 string name;
@@ -309,6 +295,7 @@ public:
         } while (c == "y" || c == "Y");
     }
 };
+
 void LinkedList::docfile()
 {
     ThiSinh ts;
@@ -329,15 +316,13 @@ void LinkedList::docfile()
             line.erase(0, pos + 1);
 
             pos = line.find(",");
-            try
-            {
+            try {
                 ts.setgt(stoi(line.substr(0, pos)));
             }
-            catch (const invalid_argument &e)
-            {
+            catch (const invalid_argument& e) {
                 cerr << "Lỗi: " << e.what() << " - Giá trị không hợp lệ: " << line.substr(0, pos) << std::endl;
                 // Xử lý lỗi ở đây (ví dụ: gán giá trị mặc định)
-                ts.setgt(0);
+                ts.setgt(0); 
             }
             line.erase(0, pos + 1);
 
@@ -369,99 +354,80 @@ void LinkedList::docfile()
             ts.setli(stof(line.substr(0, pos)));
             line.erase(0, pos + 1);
 
-            pos = line.find(",");
-            ts.sethoa(stof(line.substr(0, pos)));
-            line.erase(0, pos + 1);
-
-            for (int i=0;i<ts.getspt();i++){
-                 pos = line.find(",");
-                ts.setnv(line.substr(0, pos),i);
-                line.erase(0, pos+1);
-            }
+            ts.sethoa(stof(line));
             insert(ts);
         }
 
         inputFile.close();
     }
-    else
-    {
+    else {
         cout << "Không thể mở file." << endl;
     }
 }
-void LinkedList::ghifile()
-
+void LinkedList::sapxepdiem()
 {
+    if (head == NULL)
+    {
+        cout << "Danh sách rỗng.";
+        return;
+    }
+
+    int count = 0;
+    node *temp = head;
+    while (temp != NULL)
+    {
+        count++;
+        temp = temp->next;
+    }
+
+    bool swapped;
+    node *ptr1;
+    node *lptr = NULL;
+
+    // Lặp lại quá trình sắp xếp cho đến khi không có cặp phần tử nào được tráo đổi
+    for (int i = 0; i < count - 1; i++)
+    {
+        swapped = false;
+        ptr1 = head;
+
+        // Lặp qua tất cả các phần tử và so sánh điểm của chúng
+        for (int j = 0; j < count - i - 1; j++)
+        {
+            if (ptr1->data.getsum() < ptr1->next->data.getsum())
+            {
+                // Hoán đổi nội dung giữa hai phần tử
+                ThiSinh temp = ptr1->data;
+                ptr1->data = ptr1->next->data;
+                ptr1->next->data = temp;
+                swapped = true;
+            }
+            ptr1 = ptr1->next;
+        }
+
+        // Nếu không có phần tử nào được tráo đổi, thì danh sách đã được sắp xếp
+        if (swapped == false)
+            break;
+    }
+}
+
+void LinkedList::ghifile(){
     ofstream outputFile;
     outputFile.open("dsthisinh.txt", ios::out);
     if (outputFile.is_open())
     {
-        node *current = head;
+        node* current = head; 
         while (current != NULL)
         {
-            outputFile << current->data.getname() << "," << current->data.getcccd() << "," << current->data.getgt() << ","
+            outputFile << current->data.getname() << ", " << current->data.getcccd() << ", " << current->data.getgt() << ", "
                        << current->data.getdate().day << "/" << current->data.getdate().month << "/" << current->data.getdate().year
-                       << "," << current->data.getaddress() << "," << current->data.getsbd() << "," << current->data.getto()
-                       << "," << current->data.getli() << "," << current->data.gethoa() ;
-            for (int i=0;i<current->data.getspt();i++)
-            cout<< ","  << current->data.getnv(i) ;
-            cout << endl;
-            current = current->next;
+                       << ", " << current->data.getaddress() << ", " << current->data.getsbd() << ", " << current->data.getto()
+                       << ", " << current->data.getli() << ", " << current->data.gethoa() << endl;
+            
+            current = current->next; 
         }
         outputFile.close();
     }
-    else
-    {
+    else {
         cout << "Không thể mở file." << endl;
     }
-}
-float LinkedList::searchnganh(string s)
-    {
-        s = capitalizeFirstLetter(s);
-        Nganhdaotao *p = pHead;
-        while (p != NULL)
-        {
-            if (p->TenNganh == s)
-                return p->DiemChuan;
-            p = p->next;
-        }
-        cout << "Không có tên ngành này" << endl;
-        return 0;
-    }
-LinkedList LinkedList::SapXepDiem(){
-    LinkedList result;
-    for (node *temp = this->head; temp!=NULL; temp=temp->next)
-        for (node *p=temp->next;p;p=p->next)
-        {
-            if (temp->data.getsum() < p->data.getsum())
-            {
-                node *tempData;
-                tempData->data = temp->data;
-                temp->data = p->data;
-                p->data = tempData->data;
-            }
-        }
-    for (node *m = this->head; m!=NULL ;m =m->next)
-        result.insert(m->data);
-    return result;
-}
-
-void LinkedList::check(){
-    int i=0;
-    LinkedList dsdau;
-    node *temp=head;
-    while (temp!=NULL) {
-        do 
-        {
-            float dc = searchnganh(temp->data.getnv(i));
-            if (dc && temp->data.getsum() >dc ) {
-                dsdau.insert(temp->data);
-                break;
-            }
-            else if (dc) return;
-            else i++;
-        }
-        while (i< temp->data.getspt());
-        temp=temp->next;
-    }
-    dsdau.SapXepDiem();
 }
