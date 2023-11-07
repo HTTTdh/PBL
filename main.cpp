@@ -327,7 +327,56 @@ void menu()
                 }
                 case 7:
                 {
-                    
+                     string tennganh;
+                    cout << "Nhap ten nganh ";
+                    getline(cin, tennganh);
+                    system("cls");
+                    gotoXY(20,4);
+                    cout << "DANH SACH CAC THI SINH DAU NGANH "+tennganh << endl;
+                    cout << "+";
+                    for (int i = 0; i < 163; i++)
+                        cout << "-";
+                    cout << "+" << endl;
+                    cout << "|" << setw(14) << "Ten" << setw(20) << "|";
+                    cout << setw(10) << "CCCD" << setw(10) << "|";
+                    cout << setw(5) << "GT" << setw(3) << "|";
+                    cout << setw(14) << "Ngay Sinh" << setw(5) << "|";
+                    cout << setw(12) << "Dia Chi" << setw(8) << "|";
+                    cout << setw(8) << "SBD" << setw(8) << "|";
+                    cout << setw(7) << "Toan" << setw(3) << "|";
+                    cout << setw(5) << "Ly" << setw(3) << "|";
+                    cout << setw(6) << "Hoa" << setw(3) << "|";
+                    cout << setw(7) << "Tong" << setw(3) << "|";
+                    cout << "Ma Nganh" << setw(2) << "|" << endl;
+                    node *temp = ds.head;
+                    while (temp!=NULL){
+                        if (temp->data.wishes.front()==tennganh) {
+                            cout << "|";
+                        for (int i = 0; i < 163; i++)
+                            cout << "-";
+                        cout << "|" << endl;
+                        cout << "|" << temp->data.name << setw(34 - temp->data.name.length()) << "|";
+                        cout << temp->data.cccd << setw(20 - temp->data.cccd.length()) << "|";
+                        cout << setw(4) << temp->data.gt << setw(4) << "|";
+                        cout << temp->data.date.day << "/" << temp->data.date.month << "/" << temp->data.date.year << setw(19 - temp->data.date.sizedate()) << "|";
+                        cout << temp->data.address << setw(20 - temp->data.address.length()) << "|";
+                        cout << temp->data.sbd << setw(16 - temp->data.sbd.length()) << "|";
+                        cout << setw(7) << temp->data.to << setw(3) << "|";
+                        cout << setw(5) << temp->data.li << setw(3) << "|";
+                        cout << setw(6) << temp->data.ho << setw(3) << "|";
+                        cout << setw(5) << temp->data.to + temp->data.li + temp->data.ho << setw(5) << "|";
+                        string tenganh = temp->data.wishes.front();
+                        cout << tim_ma_nganh(tenganh);
+                        cout << setw(3) << "|";
+                        cout << endl;
+                        cout << "|";
+                        for (int i = 0; i < 163; i++)
+                            cout << "-";
+                        cout << "|" << endl;
+                        temp = temp->next;
+                        }
+                        
+                    }
                     system("pause");
                     system("COLOR 0A");
                     system("cls");

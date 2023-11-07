@@ -270,7 +270,7 @@ void edit_infor(LinkedList &ds, string sbd, string name)
         cin >> c;
     } while (c == "y" || c == "Y");
 }
-string tim_nghanh(float *dc, string s)
+string tim_nganh(float *dc, string s)
 {
     string str="";
     int result ;
@@ -298,7 +298,7 @@ LinkedList check_dau(LinkedList &ds){
         int i=0;
         do
         {
-            s=tim_nghanh(&dc, p->data.wishes[i]);
+            s=tim_nganh(&dc, p->data.wishes[i]);
             if (s!="") {
                 if (p->data.sum >= dc)
                    {

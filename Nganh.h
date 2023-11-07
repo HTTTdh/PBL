@@ -101,6 +101,7 @@ void output()
         cout << "-";
     cout << "|" << endl;
 }
+
 string capitalizeFirstLetter(string str) {
     int len = str.length();
     if (len == 0 || str[0] == ' ') {

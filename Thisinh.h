@@ -81,4 +81,5 @@ void ThiSinh::display()
      cout << setw(5) << li << setw(3) << "|";
      cout << setw(6) << ho << setw(3) << "|";
      cout << setw(5) << to + li + ho << setw(5) << "|" ;
+     
 }
