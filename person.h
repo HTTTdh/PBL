@@ -4,30 +4,37 @@
 #include <fstream>
 #include <iomanip>
 #include <stdexcept> 
-#include"date.h"
 using namespace std;
+class Date
+{
+public:
+    int day, month, year;
+    int sizedate()
+    {
+        int m = 6;
+        if (day < 10)
+            m++;
+        else
+            m += 2;
+        if (month < 10)
+            m++;
+        else
+            m = m + 2;
+        return m;
+    }
+    Date(int day=0,int month=0, int year=0):day(day), month(month),year(year){}
+};
+
 class Person
 {
-protected:
+public:
     string cccd;
     string name;
     Date date;
     string address;
-    int gt;
-
-public:
+    string gt;
     Person();
-    Person(string cccd, string name, Date date, string address, int gt);
-    void setcccd(string cccd);
-    string getcccd();
-    void setname(string name);
-    string getname();
-    void setdate(Date date);
-    Date getdate();
-    void setaddress(string address);
-    string getaddress();
-    void setgt(int gt);
-    int getgt();
+    Person(string cccd, string name, Date date, string address, string gt);
     void nhapthongtin();
 };
 
@@ -39,67 +46,32 @@ Person::Person()
     date.month = 0;
     date.year = 0;
     address = "";
-    gt = 0;
+    gt ="";
 }
-Person::Person(string cccd, string name, Date date, string address, int gt) : cccd(cccd), name(name), date(date), address(address), gt(gt){};
-void Person::setcccd(string cccd)
-{
-    this->cccd = cccd;
-}
-string Person::getcccd()
-{
-    return cccd;
-}
-void Person::setname(string name)
-{
-    this->name = name;
-}
-string Person::getname()
-{
-    return name;
-}
-void Person::setdate(Date date)
-{
-    this->date.day = date.day;
-    this->date.month = date.month;
-    this->date.year = date.year;
-}
-Date Person::getdate()
-{
-    return date;
-}
-void Person::setaddress(string address)
-{
-    this->address = address;
-}
-string Person::getaddress()
-{
-    return address;
-}
-void Person::setgt(int gt)
-{
-    this->gt = gt;
-}
-int Person::getgt()
-{
-    return gt;
-}
+Person::Person(string cccd, string name, Date date, string address, string gt) : cccd(cccd), name(name), date(date), address(address), gt(gt){};
 void Person::nhapthongtin()
 {
     fflush(stdin);
-    cout << "Nhập họ tên: ";
+	gotoXY(62, 4);
+    cout  << "Ho ten: ";
     getline(cin, name);
-    cout << "Nhập số cccd: ";
+    gotoXY(62,5);
+    cout  << "So cccd: ";
     getline(cin, cccd);
-    cout << "Nhập ngày sinh: ";
+     gotoXY(62,6);
+    cout <<  "Ngay sinh: ";
     cin >> date.day;
-    cout << "Nhập tháng sinh: ";
+     gotoXY(62,7);
+    cout << "Thang sinh: ";
     cin >> date.month;
-    cout << "Nhập năm sinh: ";
+     gotoXY(62,8);
+    cout  << "Nam sinh: ";
     cin >> date.year;
+     gotoXY(62,9);
     cin.ignore(1);
-    cout << "Nhập địa chỉ (chỉ nhập tỉnh): ";
+    cout  << "Dia chi (chi nhap tinh): ";
     getline(cin, address);
-    cout << "Nhập giới tính (0: Nam, 1: Nữ): ";
-    cin >> gt;
+     gotoXY(62,10);
+    cout << "Gioi tinh (Nam/Nu): ";
+    getline(cin,gt);
 }

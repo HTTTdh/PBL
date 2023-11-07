@@ -60,22 +60,23 @@ void mofile()
     }
     else
     {
-        cout << "Không thể mở file." << endl;
+        cout << "Khong the mo file." << endl;
     }
 }
 
 void output()
 {
+    mofile();
     Nganhdaotao *temp = pHead;
 
-    cout << setw(100) << "DANH SÁCH CÁC NGÀNH ĐÀO TẠO" << endl;
+    cout << setw(100) << "DANH SACH CAC NGANH DAO TAO" << endl;
     cout << setw(41) << "+";
     for (int i = 0; i < 87; i++)
         cout << "-";
     cout << "+" << endl;
-    cout <<setw(41) << "|" << setw(25) << "Tên Ngành" << setw(16) << "|";
-    cout << setw(19) << "Mã Ngành" << setw(11) << "|";
-    cout << setw(20) << "Điểm Chuẩn" << setw(6) << "|" << endl;
+    cout <<setw(41) << "|" << setw(25) << "Ten Nganh" << setw(16) << "|";
+    cout << setw(19) << "Ma Nganh" << setw(11) << "|";
+    cout << setw(20) << "Diem Chuan" << setw(6) << "|" << endl;
 
     while (temp != NULL)
     {
@@ -107,4 +108,3 @@ string capitalizeFirstLetter(string str) {
     }
     return str;
 }
- 
