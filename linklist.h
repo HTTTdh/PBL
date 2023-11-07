@@ -90,6 +90,7 @@ public:
         while (temp != NULL)
         {
             temp->data.display();
+            cout << endl;
             temp = temp->next;
         }
         cout << "|";

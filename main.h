@@ -59,6 +59,7 @@ void DisplayFilteredData(LinkedList &list, const string &message, CompareFunc co
         if (compareFunc(p->data, compareValue))
         {
             p->data.display();
+            cout << endl;
         }
         p = p->next;
     }
@@ -269,9 +270,9 @@ void edit_infor(LinkedList &ds, string sbd, string name)
         cin >> c;
     } while (c == "y" || c == "Y");
 }
-float tim_nghanh(string s)
+string tim_nghanh(float *dc, string s)
 {
-    string str ;
+    string str="";
     int result ;
     mofile();
     Nganhdaotao *p = pHead;
@@ -279,25 +280,31 @@ float tim_nghanh(string s)
             {
                 result = strcmp(p->TenNganh.c_str(), s.c_str());
                 if (result == 0){
-                    return p->DiemChuan;
+                   *dc = p->DiemChuan;
+                   return s;
                 }
                 p = p->next;
             }
-    cout << "Khong co ten nganh nay !" << endl;
-        return 0;
+    // cout << "Khong co ten nganh nay !" << endl;
+        return str;
 }
 LinkedList check_dau(LinkedList &ds){
     LinkedList dsdau;
     node *p = ds.head;
     float dc;
+    string s;
     while (p!=NULL)
     {
         int i=0;
         do
         {
-            if (dc=tim_nghanh(p->data.wishes[i])) {
+            s=tim_nghanh(&dc, p->data.wishes[i]);
+            if (s!="") {
                 if (p->data.sum >= dc)
-                   { dsdau.insert(p->data);break;}
+                   {
+                    p->data.wishes.clear();
+                    p->data.wishes.push_back(s); 
+                    dsdau.insert(p->data);break;}
             }
             else 
             {cout<<"Khong co ten nganh da nhap";

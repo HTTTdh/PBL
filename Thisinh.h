@@ -81,14 +81,4 @@ void ThiSinh::display()
      cout << setw(5) << li << setw(3) << "|";
      cout << setw(6) << ho << setw(3) << "|";
      cout << setw(5) << to + li + ho << setw(5) << "|" ;
-   
-//    cout << name << " " << cccd << " " << gt << " " << date.day << "/" << date.month << "/" << date.year << " " << address << " " << sbd << " " 
-//    << to << " " << li << " " << ho << " " << to+li+ho << " ";
-//    for (string wish : wishes) {
-//                cout << wish << " ";
-//            }
-    cout << endl;
 }
-
-
- 

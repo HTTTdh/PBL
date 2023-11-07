@@ -5,5 +5,3 @@ Nguyen Tuan Anh,041829365271,Nam,14/6/2004,Thai Nguyen,12516387,8.4,7,9.5,Cong n
 Vo Quoc Anh,043829887216,Nam,22/12/2004,Bac Giang,18128945,7.8,8,7.25,Cong nghe thuc pham;
 Hoang Tan Bao,040371947399,Nam,2/8/2004,Ninh Binh,27634285,4.6,6.5,7,Cong nghe thong tin;Cong nghe thuc pham;
 Nguyen Thi Thanh Binh,040343189567,Nu,20/2/2003,Thanh Hoa,28417483,8.8,9,8,Cong nghe thong tin;Ky thuat dien tu - vien thong;
-Ho Thi Thu Thanh,049304012028,Nu,5/1/2004,Quang Nam,34006760,9,9,9,Cong nghe thong tin;
-Nguyen Van A,049304012029,Nam,6/1/2003,Quang Ngai,36360036,8,9,8,Cong nghe thong tin;Cong nghe thuc pham;

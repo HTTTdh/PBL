@@ -31,7 +31,14 @@ void insertnganh(Nganhdaotao *p)
         temp->next = p;
     }
 }
-
+string tim_ma_nganh(string ten_nganh){
+    Nganhdaotao* current=pHead;
+    while(current!=NULL){
+        if(ten_nganh==current->TenNganh){
+            return current->MaNganh;
+        }
+    }
+}
 void mofile()
 {
     ifstream inputfile;
