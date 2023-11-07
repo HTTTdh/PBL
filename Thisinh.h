@@ -35,32 +35,32 @@ ThiSinh::ThiSinh(string cccd, string name, Date date, string address, string gt,
 };
 void ThiSinh::input()
 {
-    draw(60, 2, 112, 21);
+    draw(60, 10, 112, 30);
     SetColor1(7, 4);
     nhapthongtin();
     fflush(stdin);
-     gotoXY(62,11);
+     gotoXY(62,19);
     cout  << "So bao danh: ";
     getline(cin, sbd);
-     gotoXY(62,12);
+     gotoXY(62,20);
     cout << "Diem toan: ";
     cin >> to;
-     gotoXY(62,13);
+     gotoXY(62,21);
     cout  << "Diem ly: ";
     cin >> li;
-     gotoXY(62,14);
+     gotoXY(62,22);
     cout << "Diem hoa: ";
     cin >> ho;
-     gotoXY(62,15);
+     gotoXY(62,23);
     int so_nv;
     cout << "So nguyen vong dang ki : " ;
     cin >> so_nv;
     fflush(stdin);
     for (int i = 0; i < so_nv; i++){
         string nv;
-         gotoXY(62,16+i);
+         gotoXY(62,24+i);
+         cin.ignore(0);
         cout << "Nguyen vong thu " << i+1 << " : " ;
-        cin.ignore();
         getline(cin,nv);
         wishes.push_back(nv);
     }

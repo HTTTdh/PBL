@@ -39,7 +39,7 @@ void Form()
 }
 void Form1(){
            
-            draw(60,2,90,18);
+            draw(60,2,90,15);
            gotoXY(62,6);
            cout << "1. Ten";
            gotoXY(62,7);
@@ -85,6 +85,7 @@ public:
     }
      void xuat()
     {
+        Form();
         node *temp = head;
         while (temp != NULL)
         {
@@ -167,8 +168,6 @@ public:
             break;
         
 }
-xuat();
-
     }
      bool testempty()
     {
@@ -265,8 +264,7 @@ void LinkedList::ghifile(){
                        << current->data.date.day << "/" << current->data.date.month << "/" << current->data.date.year
                        << "," << current->data.address<< "," << current->data.sbd << "," << current->data.to
                        << "," << current->data.li << "," << current->data.ho << ",";
-           for (int i = 0; i < current->data.wishes.size(); i++)  {
-             	string wish = current->data.wishes[i];
+ for (string wish : current->data.wishes) {
                 outputFile  << wish << ";";
             }
             outputFile << endl;

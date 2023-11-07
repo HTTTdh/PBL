@@ -164,7 +164,6 @@ void menu()
                 {
                 case 0:
                 {
-                    Form();
                     danhsach.xuat();
                     system("pause");
                     system("COLOR 0A");
@@ -173,11 +172,13 @@ void menu()
                 }
                 case 1:
                 {
+                    output();
                     ts.input();
                     danhsach.insert(ts);
                     danhsach.ghifile();
-                    gotoXY(62,20);
-                    cout << "Da them thanh cong\n";
+                    gotoXY(62,31);
+                    cout << "Da them thanh cong";
+                    gotoXY(70,3);
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -234,8 +235,8 @@ void menu()
                     {
                         edit_infor(danhsach, sbd, name);
                         danhsach.ghifile();
-                        gotoXY(62,9);
-                        cout << "Da cap nhap thong tin\n";
+                        gotoXY(0,20);
+                        danhsach.xuat();
                     }
                     else
                         {gotoXY(62,9); cout << "khong tim thay thong tin" << endl;}

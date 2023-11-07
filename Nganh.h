@@ -68,15 +68,14 @@ void output()
 {
     mofile();
     Nganhdaotao *temp = pHead;
-
     cout << setw(100) << "DANH SACH CAC NGANH DAO TAO" << endl;
     cout << setw(41) << "+";
     for (int i = 0; i < 87; i++)
         cout << "-";
     cout << "+" << endl;
-    cout <<setw(41) << "|" << setw(25) << "Ten Nganh" << setw(16) << "|";
-    cout << setw(19) << "Ma Nganh" << setw(11) << "|";
-    cout << setw(20) << "Diem Chuan" << setw(6) << "|" << endl;
+    cout <<setw(41) << "|" << setw(24) << "Ten Nganh" << setw(15) << "|";
+    cout << setw(17) << "Ma Nganh" << setw(11) << "|";
+    cout << setw(18) << "Diem Chuan" << setw(3) << "|" << endl;
 
     while (temp != NULL)
     {
@@ -89,7 +88,7 @@ void output()
         cout <<setw(12) << temp->DiemChuan << setw(9) << "|" << endl;
         temp = temp->next;
     }
-
+    pHead=NULL;
     cout<< setw(41) << "|";
     for (int i = 0; i < 87; i++)
         cout << "-";

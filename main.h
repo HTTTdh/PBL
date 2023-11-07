@@ -48,9 +48,11 @@ void DisplayFilteredData(LinkedList &list, const string &message, CompareFunc co
 {
     fflush(stdin);
     node *p = list.getHead();
+    gotoXY(80,5);
     cout << message + ": ";
     getline(cin, compareValue);
-    compareValue = capitalizeFirstLetter(compareValue);
+    // compareValue = capitalizeFirstLetter(compareValue);
+     gotoXY(0,20);
     Form();
     while (p != NULL)
     {
@@ -79,7 +81,7 @@ void search_info(LinkedList &list)
           system("cls");
            SetColor1(7,2);
          gotoXY(62,4);
-           cout << "CAC THONG TTN CAN TIM" ;
+           cout << "CAC THONG TIN CAN TIM" ;
         Form1();
         gotoXY(62,13);
         cout << "Moi nhap lua chon :";
@@ -90,6 +92,23 @@ void search_info(LinkedList &list)
             cout << "Lua chon cua ban khong hop le!!! \n Hay nhap lai: ";
             cin >> lc;
         }
+          system("cls");
+            SetColor1(7,2);
+         gotoXY(22,4);
+            cout  << "CAC THONG TIN CAN SUA" << endl;
+           draw(20,2,50,15);
+           gotoXY(22,6);
+           cout << "1. Ten";
+           gotoXY(22,7);
+           cout << "2. Dia Chi";
+           gotoXY(22,8);
+           cout <<"3. CCCD";
+           gotoXY(22,9);
+           cout << "4. SBD";
+           gotoXY(22,10);
+           cout << "5. Nam Sinh";
+           gotoXY(22,11);
+           cout << "6. Gioi Tinh";
         switch (lc)
         {
         case 1:
@@ -149,30 +168,53 @@ void edit_infor(LinkedList &ds, string sbd, string name)
             cin >> luachon;
         }
         system("cls");
+            SetColor1(7,2);
+         gotoXY(22,4);
+            cout  << "CAC THONG TIN CAN SUA" << endl;
+           draw(20,2,50,15);
+           gotoXY(22,6);
+           cout << "1. Ten";
+           gotoXY(22,7);
+           cout << "2. Dia Chi";
+           gotoXY(22,8);
+           cout <<"3. CCCD";
+           gotoXY(22,9);
+           cout << "4. SBD";
+           gotoXY(22,10);
+           cout << "5. Nam Sinh";
+           gotoXY(22,11);
+           cout << "6. Gioi Tinh";
+            gotoXY(22,12);
+        cout << "7. Diem";
         switch (luachon)
         {
         case 1:
-           {     cout << "Nhap lai ten: ";
+           {        gotoXY(70,4);    
+             cout << "Nhap lai ten: ";
                 cin.ignore();
                 getline(cin, New);
                 p->data.name = New;
             break;}
         case 2:
-          {      string newAddress;
+          {   gotoXY(70,4);    
+             string newAddress;
                 cout << "Nhap lai dia chi: ";
                 cin.ignore();
                 getline(cin, newAddress);
                  p->data.address = newAddress;
             break;}
          case 3:
-           {     string newCCCD;
+           {
+              gotoXY(70,4);    
+             string newCCCD;
                 cout << "Nhap so CCCD moi: ";
                 cin.ignore();
                 getline(cin, newCCCD);
                  p->data.cccd = newCCCD;
             break;}
         case 4:
-          {  string sbdnew;
+          {   gotoXY(70,4); 
+            string sbdnew;
                 cout << "Nhap so bao danh moi: ";
                 cin.ignore();
                 getline(cin, sbdnew);
@@ -180,11 +222,15 @@ void edit_infor(LinkedList &ds, string sbd, string name)
             break;}
             case 5:
        {   int day, month, year;
+         gotoXY(70,4);
                 cout << "Nhap lai ngay/thang/nam sinh: " << endl;
+                gotoXY(70,5);
                 cout << "Nhap ngay: ";
                 cin >> day;
+                gotoXY(70,6);
                 cout << "Nhap thang: ";
                 cin >> month;
+                gotoXY(70,7);
                 cout << "Nhap nam: ";
                 cin >> year;
                 p->data.date.day = day;
@@ -193,16 +239,22 @@ void edit_infor(LinkedList &ds, string sbd, string name)
             break;}
         case 6:
           {       string newgt;
-                cout << "Nhap gioi tinh: (0: Nam, 1: Nu) ";
+            gotoXY(70,4);
+                cout << "Nhap gioi tinh: (Nam/Nu) ";
                 cin >> newgt;
                 p->data.gt = newgt;
             break;}
         case 7:
           {  float newMath, newPhysics, newChemistry;
+            gotoXY(70,4);
+            cout<< "Nhap lai diem";
+            gotoXY(70,6);
                 cout << "Nhap diem toan: ";
                 cin >> newMath;
+                gotoXY(70,7);
                 cout << "Nhap diem ly: ";
                 cin >> newPhysics;
+                gotoXY(70,8);
                 cout << "Nhap diem hoa: ";
                 cin >> newChemistry;
                 p->data.to=newMath;
@@ -210,6 +262,9 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                 p->data.ho = newChemistry;
             break;}
         }
+         gotoXY(70,10);
+                        cout << "Da cap nhap thong tin\n";
+                        gotoXY(70,12);
         cout << "Ban co muon sua thong tin nao nua khong? (y/n) ";
         cin >> c;
     } while (c == "y" || c == "Y");
