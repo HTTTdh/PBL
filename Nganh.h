@@ -31,14 +31,20 @@ void insertnganh(Nganhdaotao *p)
         temp->next = p;
     }
 }
-string tim_ma_nganh(string ten_nganh){
-    Nganhdaotao* current=pHead;
-    while(current!=NULL){
-        if(ten_nganh==current->TenNganh){
+string tim_ma_nganh(string ten_nganh)
+{
+    Nganhdaotao *current = pHead;
+    while (current != NULL)
+    {
+        if (ten_nganh == current->TenNganh)
+        {
             return current->MaNganh;
         }
+        current = current->next;
     }
+    return "";
 }
+
 void mofile()
 {
     ifstream inputfile;
@@ -75,41 +81,51 @@ void output()
 {
     mofile();
     Nganhdaotao *temp = pHead;
-    cout << setw(100) << "DANH SACH CAC NGANH DAO TAO" << endl;
+    cout << setw(140) << "DANH SACH CAC NGANH DAO TAO" << endl;
+    gotoXY(40,1);
     cout << setw(41) << "+";
     for (int i = 0; i < 87; i++)
         cout << "-";
     cout << "+" << endl;
-    cout <<setw(41) << "|" << setw(24) << "Ten Nganh" << setw(15) << "|";
+    gotoXY(80,2);
+    cout << "|" << setw(24) << "Ten Nganh" << setw(15) << "|";
     cout << setw(17) << "Ma Nganh" << setw(11) << "|";
     cout << setw(18) << "Diem Chuan" << setw(3) << "|" << endl;
-
+    int j=0;
     while (temp != NULL)
     {
-        cout <<setw(41) << "|";
+        gotoXY(80,3+j);
+        cout << "|";
         for (int i = 0; i < 87; i++)
             cout << "-";
-        cout << "|" << endl;
-        cout << setw(41) << "|"  << temp->TenNganh << setw(39-(temp->TenNganh).length()) << "|";
-        cout <<setw(16) << temp->MaNganh << setw(12) << "|";
-        cout <<setw(12) << temp->DiemChuan << setw(9) << "|" << endl;
+        cout << "|" ;
+        gotoXY(80,4+j);
+        cout << "|" << temp->TenNganh << setw(39 - (temp->TenNganh).length()) << "|";
+        cout << setw(16) << temp->MaNganh << setw(12) << "|";
+        cout << setw(12) << temp->DiemChuan << setw(9) << "|" ;
+        j=j+2;
         temp = temp->next;
     }
-    pHead=NULL;
-    cout<< setw(41) << "|";
+    pHead = NULL;
+    gotoXY(80,j+1);
+    cout << "|";
     for (int i = 0; i < 87; i++)
         cout << "-";
     cout << "|" << endl;
 }
 
-string capitalizeFirstLetter(string str) {
+string capitalizeFirstLetter(string str)
+{
     int len = str.length();
-    if (len == 0 || str[0] == ' ') {
+    if (len == 0 || str[0] == ' ')
+    {
         return str;
     }
     str[0] = toupper(str[0]);
-    for (int i = 1; i < len; i++) {
-        if (str[i] == ' ' && isalpha(str[i + 1])) {
+    for (int i = 1; i < len; i++)
+    {
+        if (str[i] == ' ' && isalpha(str[i + 1]))
+        {
             str[i + 1] = toupper(str[i + 1]);
         }
     }

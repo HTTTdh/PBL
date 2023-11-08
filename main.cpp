@@ -5,8 +5,9 @@
 #include "main.h"
 
 using namespace std;
-int x = 40;
+int x = 65;
 int y = 5;
+
 void box(int x, int y, int w, int h, int t_color, int b_color, string tieude)
 {
     textcolor(b_color);
@@ -80,11 +81,15 @@ void thanh_sang(int x, int y, int w, int h, int b_color, string tieude)
 }
 void inMenu(int x, int y, int w, int h, int t_color, int b_color, int b_color_sang, string nd[], int n)
 {
+    SetColor(75);
+    gotoXY(60, 3);
+    cout << "QUAN LI CAC THI SINH DU THI VAO MOT TRUONG DAI HOC";
     n_box(x, y, w, h, t_color, b_color, nd, n);
     thanh_sang(x, y, w, h, b_color_sang, nd[0]);
 }
 void menu()
 {
+    system("cls");
     LinkedList danhsach;
     LinkedList ds;
     ThiSinh ts;
@@ -165,6 +170,9 @@ void menu()
                 {
                 case 0:
                 {
+                    gotoXY(45, 2);
+                    cout << "DANH SACH CAC THI SINH DU THI VAO MOT TRUONG DAI HOC";
+                    gotoXY(0, 4);
                     danhsach.xuat();
                     system("pause");
                     system("COLOR 0A");
@@ -178,9 +186,9 @@ void menu()
                     danhsach.insert(ts);
                     ts.wishes.clear();
                     danhsach.ghifile();
-                    gotoXY(62, 31);
+                    gotoXY(22, 31);
                     cout << "Da them thanh cong";
-                    gotoXY(70, 3);
+                    gotoXY(22, 33);
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -268,8 +276,10 @@ void menu()
                 }
                 case 5:
                 {
+                    gotoXY(45, 2);
+                    cout << "DANH SACH THI SINH DA DUOC SAP XEP DIEM THEO THU TU GIAM DAN";
+                    gotoXY(0, 4);
                     danhsach.sapxepdiem();
-                    danhsach.xuat();
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -277,49 +287,29 @@ void menu()
                 }
                 case 6:
                 {
+                    gotoXY(60, 2);
+                    cout << "DANH SACH THI SINH DAU DAI HOC";
+                    gotoXY(0, 4);
                     ds = check_dau(danhsach);
-                    cout << "+";
-                    for (int i = 0; i < 163; i++)
-                        cout << "-";
-                    cout << "+" << endl;
-                    cout << "|" << setw(14) << "Ten" << setw(20) << "|";
-                    cout << setw(10) << "CCCD" << setw(10) << "|";
-                    cout << setw(5) << "GT" << setw(3) << "|";
-                    cout << setw(14) << "Ngay Sinh" << setw(5) << "|";
-                    cout << setw(12) << "Dia Chi" << setw(8) << "|";
-                    cout << setw(8) << "SBD" << setw(8) << "|";
-                    cout << setw(7) << "Toan" << setw(3) << "|";
-                    cout << setw(5) << "Ly" << setw(3) << "|";
-                    cout << setw(6) << "Hoa" << setw(3) << "|";
-                    cout << setw(7) << "Tong" << setw(3) << "|";
-                    cout << "Ma Nganh" << setw(2) << "|" << endl;
+                    Form2();
                     node *temp = ds.head;
+                    string tenganh;
                     while (temp != NULL)
                     {
                         cout << "|";
-                        for (int i = 0; i < 163; i++)
+                        for (int i = 0; i < 165; i++)
                             cout << "-";
-                        cout << "|" << endl;
-                        cout << "|" << temp->data.name << setw(34 - temp->data.name.length()) << "|";
-                        cout << temp->data.cccd << setw(20 - temp->data.cccd.length()) << "|";
-                        cout << setw(4) << temp->data.gt << setw(4) << "|";
-                        cout << temp->data.date.day << "/" << temp->data.date.month << "/" << temp->data.date.year << setw(19 - temp->data.date.sizedate()) << "|";
-                        cout << temp->data.address << setw(20 - temp->data.address.length()) << "|";
-                        cout << temp->data.sbd << setw(16 - temp->data.sbd.length()) << "|";
-                        cout << setw(7) << temp->data.to << setw(3) << "|";
-                        cout << setw(5) << temp->data.li << setw(3) << "|";
-                        cout << setw(6) << temp->data.ho << setw(3) << "|";
-                        cout << setw(5) << temp->data.to + temp->data.li + temp->data.ho << setw(5) << "|";
-                        string tenganh = temp->data.wishes.front();
+                        temp->data.display();
+                        tenganh = temp->data.wishes.front();
                         cout << tim_ma_nganh(tenganh);
-                        cout << setw(3) << "|";
+                        cout << setw(5) << "|";
                         cout << endl;
-                        cout << "|";
-                        for (int i = 0; i < 163; i++)
-                            cout << "-";
-                        cout << "|" << endl;
                         temp = temp->next;
                     }
+                    cout << "|";
+                    for (int i = 0; i < 165; i++)
+                        cout << "-";
+                    cout << "|" << endl;
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -327,56 +317,43 @@ void menu()
                 }
                 case 7:
                 {
-                     string tennganh;
-                    cout << "Nhap ten nganh ";
+                    string tennganh, str;
+                    cout << "Nhap ten nganh: ";
                     getline(cin, tennganh);
+                    str = tennganh;
                     system("cls");
-                    gotoXY(20,4);
-                    cout << "DANH SACH CAC THI SINH DAU NGANH "+tennganh << endl;
-                    cout << "+";
-                    for (int i = 0; i < 163; i++)
-                        cout << "-";
-                    cout << "+" << endl;
-                    cout << "|" << setw(14) << "Ten" << setw(20) << "|";
-                    cout << setw(10) << "CCCD" << setw(10) << "|";
-                    cout << setw(5) << "GT" << setw(3) << "|";
-                    cout << setw(14) << "Ngay Sinh" << setw(5) << "|";
-                    cout << setw(12) << "Dia Chi" << setw(8) << "|";
-                    cout << setw(8) << "SBD" << setw(8) << "|";
-                    cout << setw(7) << "Toan" << setw(3) << "|";
-                    cout << setw(5) << "Ly" << setw(3) << "|";
-                    cout << setw(6) << "Hoa" << setw(3) << "|";
-                    cout << setw(7) << "Tong" << setw(3) << "|";
-                    cout << "Ma Nganh" << setw(2) << "|" << endl;
-                    node *temp = ds.head;
-                    while (temp!=NULL){
-                        if (temp->data.wishes.front()==tennganh) {
-                            cout << "|";
-                        for (int i = 0; i < 163; i++)
-                            cout << "-";
-                        cout << "|" << endl;
-                        cout << "|" << temp->data.name << setw(34 - temp->data.name.length()) << "|";
-                        cout << temp->data.cccd << setw(20 - temp->data.cccd.length()) << "|";
-                        cout << setw(4) << temp->data.gt << setw(4) << "|";
-                        cout << temp->data.date.day << "/" << temp->data.date.month << "/" << temp->data.date.year << setw(19 - temp->data.date.sizedate()) << "|";
-                        cout << temp->data.address << setw(20 - temp->data.address.length()) << "|";
-                        cout << temp->data.sbd << setw(16 - temp->data.sbd.length()) << "|";
-                        cout << setw(7) << temp->data.to << setw(3) << "|";
-                        cout << setw(5) << temp->data.li << setw(3) << "|";
-                        cout << setw(6) << temp->data.ho << setw(3) << "|";
-                        cout << setw(5) << temp->data.to + temp->data.li + temp->data.ho << setw(5) << "|";
-                        string tenganh = temp->data.wishes.front();
-                        cout << tim_ma_nganh(tenganh);
-                        cout << setw(3) << "|";
-                        cout << endl;
-                        cout << "|";
-                        for (int i = 0; i < 163; i++)
-                            cout << "-";
-                        cout << "|" << endl;
-                        temp = temp->next;
-                        }
-                        
+                    gotoXY(20, 4);
+                    ds = check_dau(danhsach);
+                    gotoXY(50, 2);
+                    for (int i = 0; i < tennganh.size(); i++)
+                    {
+                        str[i] = toupper(str[i]);
                     }
+                    cout << "DANH SACH CAC THI SINH DAU NGANH " + str << endl;
+                    gotoXY(0, 4);
+                    Form2();
+                    node *temp = ds.head;
+                    string tenganh1;
+                    while (temp != NULL)
+                    {
+                        if (temp->data.wishes.front() == tennganh)
+                        {
+                            cout << "|";
+                            for (int i = 0; i < 165; i++)
+                                cout << "-";
+                            temp->data.display();
+                            tenganh1 = temp->data.wishes.front();
+                            cout << tim_ma_nganh(tenganh1);
+                            cout << setw(5) << "|";
+                            cout << endl;
+                        }
+                        temp = temp->next;
+                    }
+                    cout << "|";
+                    for (int i = 0; i < 165; i++)
+                        cout << "-";
+                    cout << "|" << endl;
+
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -384,6 +361,7 @@ void menu()
                 }
                 case 8:
                 {
+                    
                     exit(0);
                     break;
                 }
