@@ -44,4 +44,5 @@ Nguyen Van Long,048392758493,Nam,16/4/2004,Quang Binh,04839274,7,8,8.75,Ki thuat
 Phung Ngoc Hung,048372947233,Nam,9/7/2004,Hue,94738422,8,9,7,Ki thuat may tinh;Ky thuat dien tu - vien thong;
 Vo Thi Khanh Huyen,047638294738,Nu,26/1/2004,Quang Tri,03783229,7.8,8.5,8,Ki thuat co so ha tang;Quan li tai nguyen va moi truong;
 Nguyen Van Tien,047382947382,Nam,14/8/2003,Nghe An,04738299,8,7,7,Kinh te xay dung;Cong nghe sinh hoc;
-Ho Thi Thu Thanh,049304012028,Nam,5/1/2004,Quang Nam,34006760,9,9,9,Cong nghe thong tin;
+Ho Thi Thu Thanh,049304012028,Nu,5/1/2004,Quang Nam,34006760,9,9,10,Cong nghe thong tin;
+Nguyen Van A,1234567890,Nam,1/2/2003,Ha Noi,12001212,8,7,7,Quan li cong nghiep;

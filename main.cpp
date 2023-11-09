@@ -1,6 +1,7 @@
 #include <iostream>
 #include <windows.h>
 #include <string>
+#include <unistd.h>
 #include "mylib.h"
 #include "main.h"
 
@@ -91,12 +92,13 @@ void menu()
 {
     system("cls");
     LinkedList danhsach;
+    LinkedList list(danhsach);
+    danhsach.docfile();
     LinkedList ds;
     ThiSinh ts;
     string sbd;
     string name;
     int option;
-    danhsach.docfile();
     ShowCur(0);
     int w = 40;
     int h = 2;
@@ -279,7 +281,7 @@ void menu()
                     gotoXY(45, 2);
                     cout << "DANH SACH THI SINH DA DUOC SAP XEP DIEM THEO THU TU GIAM DAN";
                     gotoXY(0, 4);
-                    danhsach.sapxepdiem();
+                    danhsach.sapxepdiem().xuat();
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -361,7 +363,14 @@ void menu()
                 }
                 case 8:
                 {
-                    
+                    gotoXY(70, 10);
+                    std::string text = "Thank you";
+                    for (char c : text)
+                    {
+                        std::cout << c;
+                        std::flush(std::cout);
+                        usleep(500000); // Chờ 0.5 giây
+                    }
                     exit(0);
                     break;
                 }

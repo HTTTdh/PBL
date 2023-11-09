@@ -85,6 +85,9 @@ public:
     {
         head = NULL;
     }
+
+    ~LinkedList(){
+    }
     void insert(ThiSinh sv)
     {
         node *newNode = new node(sv);
@@ -102,6 +105,41 @@ public:
             temp->next = newNode;
         }
     }
+LinkedList sapxepdiem()
+{
+    int count = 0;
+    node *p= head;
+    while (p != NULL)
+    {
+        count++;
+        p = p->next;
+    }
+    bool swapped;
+    node *ptr1;
+
+    for (int i = 0; i < count - 1; i++)
+    {
+        swapped = false;
+        ptr1 = head;
+
+        for (int j = 0; j < count - i - 1; j++)
+        {
+            if (ptr1->data.sum < ptr1->next->data.sum)
+            {
+                ThiSinh temp = ptr1->data;
+                ptr1->data = ptr1->next->data;
+                ptr1->next->data = temp;
+                swapped = true;
+            }
+            ptr1 = ptr1->next;
+        }
+
+        if (swapped == false)
+            break;
+    }
+    return *this;
+}
+
     void xuat()
     {
         Form();
@@ -151,41 +189,7 @@ public:
         else
             return false;
     }
-    void sapxepdiem()
-    {
-        LinkedList ds = *this;
-        int count = 0;
-        node *temp = ds.head;
-        while (temp != NULL)
-        {
-            count++;
-            temp = temp->next;
-        }
-        bool swapped;
-        node *ptr1;
-
-        for (int i = 0; i < count - 1; i++)
-        {
-            swapped = false;
-            ptr1 = ds.head;
-
-            for (int j = 0; j < count - i - 1; j++)
-            {
-                if (ptr1->data.sum < ptr1->next->data.sum)
-                {
-                    ThiSinh temp = ptr1->data;
-                    ptr1->data = ptr1->next->data;
-                    ptr1->next->data = temp;
-                    swapped = true;
-                }
-                ptr1 = ptr1->next;
-            }
-
-            if (swapped == false)
-                break;
-        }
-        ds.xuat();
-          }
+   
     bool testempty()
     {
         return (head == NULL);

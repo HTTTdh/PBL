@@ -141,6 +141,7 @@ void search_info(LinkedList &list)
     } while (c == "y" || c == "Y");
 }
 
+
 void edit_infor(LinkedList &ds, string sbd, string name)
 {
     node *p = ds.search(sbd, name);
@@ -272,7 +273,7 @@ void edit_infor(LinkedList &ds, string sbd, string name)
             cout << "Nhap diem hoa: ";
             cin >> newChemistry;
             p->data.to = newMath;
-            p->data.to = newPhysics;
+            p->data.li = newPhysics;
             p->data.ho = newChemistry;
             break;
         }
