@@ -52,26 +52,26 @@ Person::Person(string cccd, string name, Date date, string address, string gt) :
 void Person::nhapthongtin()
 {
     fflush(stdin);
-	gotoXY(22, 4);
+	gotoXY(62, 12);
     cout  << "Ho ten: ";
     getline(cin, name);
-    gotoXY(22, 5);
+    gotoXY(62,13);
     cout  << "So cccd: ";
     getline(cin, cccd);
-     gotoXY(22, 6);
+     gotoXY(62,14);
     cout <<  "Ngay sinh: ";
     cin >> date.day;
-     gotoXY(22,7);
+     gotoXY(62,15);
     cout << "Thang sinh: ";
     cin >> date.month;
-     gotoXY(22,8);
+     gotoXY(62,16);
     cout  << "Nam sinh: ";
     cin >> date.year;
-     gotoXY(22,9);
+     gotoXY(62,17);
     cin.ignore(1);
     cout  << "Dia chi (chi nhap tinh): ";
     getline(cin, address);
-     gotoXY(22,10);
+     gotoXY(62,18);
     cout << "Gioi tinh (Nam/Nu): ";
     getline(cin,gt);
 }
