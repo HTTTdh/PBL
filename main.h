@@ -5,59 +5,136 @@
 #include <fstream>
 #include <iomanip>
 #include <stdexcept>
-#include"linklist.h"
-#include"Nganh.h"
+#include "linklist.h"
+#include "Nganh.h"
 using namespace std;
 
+void box(int x, int y, int w, int h, int t_color, int b_color, string tieude)
+{
+    textcolor(b_color);
+    for (int iy = y + 1; iy <= y + h - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + w - 1; ix++)
+        {
+            gotoXY(ix, iy);
+            std::cout << " ";
+        }
+    }
+    SetColor(7);
+    gotoXY(x + 1, y + 1);
+    std::cout << tieude;
+    textcolor(1);
+    SetColor(t_color);
+    if (h <= 1 || w <= 1)
+        return;
+    for (int ix = x; ix <= x + w; ix++)
+    {
+        gotoXY(ix, y);
+        std::cout << char(196);
+        gotoXY(ix, y + h);
+        std::cout << char(196);
+    }
+    for (int iy = y; iy <= y + h; iy++)
+    {
+        gotoXY(x, iy);
 
+        std::cout << char(179);
+        gotoXY(x + w, iy);
+        std::cout << char(179);
+    }
+    gotoXY(x, y);
+    std::cout << char(218);
+    gotoXY(x + w, y);
+    std::cout << char(191);
+    gotoXY(x, y + h);
+    std::cout << char(192);
+    gotoXY(x + w, y + h);
+    std::cout << char(217);
+}
+void n_box(int x, int y, int w, int h, int t_color, int b_color, string nd[], int n)
+{
+    for (int i = 0; i < n; i++)
+    {
+        box(x, y + i * 2, w, h, t_color, b_color, nd[i]);
+        if (i != 0)
+        {
+            gotoXY(x, y + i * 2);
+            std::cout << char(195);
+            gotoXY(x + 40, y + (i * 2));
+            std::cout << char(180);
+        }
+    }
+}
+void thanh_sang(int x, int y, int w, int h, int b_color, string tieude)
+{
+    textcolor(b_color);
+    for (int iy = y + 1; iy <= y + h - 1; iy++)
+    {
+        for (int ix = x + 1; ix <= x + w - 1; ix++)
+        {
+            gotoXY(ix, iy);
+            std::cout << " ";
+        }
+    }
+    SetColor(7);
+    gotoXY(x + 1, y + 1);
+    std::cout << tieude;
+}
+void inMenu(int x, int y, int w, int h, int t_color, int b_color, int b_color_sang, string nd[], int n)
+{
+    n_box(x, y, w, h, t_color, b_color, nd, n);
+    thanh_sang(x, y, w, h, b_color_sang, nd[0]);
+}
 typedef bool (*CompareFunc)(ThiSinh &, string &);
 
 bool CompareByName(ThiSinh &ts, string &name)
 {
-    return (ts.name.find(name) != string::npos);
+    return (ts.getname().find(name) != string::npos);
 }
 
-bool CompareByAddress(ThiSinh &ts,string &address)
+bool CompareByAddress(ThiSinh &ts, string &address)
 {
-    return (ts.address.find(address) != string::npos);
+    return (ts.getaddress().find(address) != string::npos);
 }
 
-bool CompareByCCCD(ThiSinh &ts,string &cccd)
+bool CompareByCCCD(ThiSinh &ts, string &cccd)
 {
-    return (ts.cccd.find(cccd) != string::npos);
+    return (ts.getcccd().find(cccd) != string::npos);
 }
 
-bool CompareBySBD(ThiSinh &ts,string &sbd)
+bool CompareBySBD(ThiSinh &ts, string &sbd)
 {
-    return (ts.sbd.find(sbd) != string::npos);
+    return (ts.getsbd().find(sbd) != string::npos);
 }
 
-bool CompareByYear(ThiSinh &ts,string &yearStr)
+bool CompareByYear(ThiSinh &ts, string &yearStr)
 {
     int year = stoi(yearStr);
-    return (ts.date.year == year);
+    return (ts.getdate().year == year);
 }
 
-bool CompareByGender(ThiSinh &ts,  string &gender)
+bool CompareByGender(ThiSinh &ts, string &gender)
 {
-    
-    return (ts.gt.find(gender) != string::npos);
+
+    return (ts.getgt().find(gender) != string::npos);
 }
 
 void DisplayFilteredData(LinkedList &list, const string &message, CompareFunc compareFunc, string compareValue)
 {
     fflush(stdin);
     node *p = list.getHead();
-    gotoXY(80,5);
+    gotoXY(60, 3);
     cout << message + ": ";
     getline(cin, compareValue);
-    // compareValue = capitalizeFirstLetter(compareValue);
-     gotoXY(0,20);
+    gotoXY(0, 7);
     Form();
     while (p != NULL)
     {
         if (compareFunc(p->data, compareValue))
         {
+            cout << "|";
+            for (int i = 0; i < 153; i++)
+                cout << "-";
             p->data.display();
             cout << endl;
         }
@@ -74,241 +151,348 @@ void DisplayFilteredData(LinkedList &list, const string &message, CompareFunc co
 
 void search_info(LinkedList &list)
 {
+    system("COLOR 0A");
     string value;
-    string c;
-    int lc;
-    do
-    {
-          system("cls");
-           SetColor1(7,2);
-         gotoXY(62,4);
-           cout << "CAC THONG TIN CAN TIM" ;
-        Form1();
-        gotoXY(62,13);
-        cout << "Moi nhap lua chon :";
-        cin >> lc;
-        while (lc < 0 || lc > 6)
-        {
-            fflush(stdin);
-            cout << "Lua chon cua ban khong hop le!!! \n Hay nhap lai: ";
-            cin >> lc;
-        }
-          system("cls");
-            SetColor1(7,2);
-         gotoXY(22,4);
-            cout  << "CAC THONG TIN CAN SUA" << endl;
-           draw(20,2,50,15);
-           gotoXY(22,6);
-           cout << "1. Ten";
-           gotoXY(22,7);
-           cout << "2. Dia Chi";
-           gotoXY(22,8);
-           cout <<"3. CCCD";
-           gotoXY(22,9);
-           cout << "4. SBD";
-           gotoXY(22,10);
-           cout << "5. Nam Sinh";
-           gotoXY(22,11);
-           cout << "6. Gioi Tinh";
-        switch (lc)
-        {
-        case 1:
-            DisplayFilteredData(list, "Nhap ten ban muon hien thi?", CompareByName, value);
-            break;
-        case 2:
-            DisplayFilteredData(list, "Nhap dia chi ban muon hien thi?", CompareByAddress, value);
-            break;
-        case 3:
-            DisplayFilteredData(list, "Nhap so can cuoc cong dan ban muon hien thi?", CompareByCCCD, value);
-            break;
-        case 4:
-            DisplayFilteredData(list, "Nhap so bao danh ma ban muon hien thi?", CompareBySBD, value);
-            break;
-        case 5:
-        {
-            string yearString;
-            DisplayFilteredData(list, "Nhap nam sinh ban muon hien thi?", CompareByYear, value);
-            break;
-        }
-        case 6:
-            DisplayFilteredData(list, "Ban muon hien thi gioi tinh nao? (Nam/Nu)", CompareByGender, value);
-            break;
-        }
-        cout << "Ban co muon tim tiep hay khong? (y/n) ";
-        cin >> c;
-    } while (c == "y" || c == "Y");
-}
+    string thu[] = {"                Ten", "               Dia Chi", "               CCCD",
+                    "                SBD", "              Nam Sinh", "              Gioi Tinh", "               Thoat"};
+    int x = 65, y = 5;
+    int w = 40, h = 2;
+    int n = 7;
+    int b_color = 4;
+    int t_color = 11;
+    int b_color_sang = 75;
+    inMenu(x, y, w, h, t_color, b_color, b_color_sang, thu, n);
+    int xp = x;
+    int yp = y;
+    int xcu = xp;
+    int ycu = yp;
+    int i = 0;
+    int d = 0;
+    bool kt = false;
 
+    while (true)
+    {
+        if (kt == true)
+        {
+            gotoXY(xcu, ycu);
+            thanh_sang(xcu, ycu, w, h, b_color, thu[i]);
+            xcu = xp;
+            ycu = yp;
+            thanh_sang(xp, yp, w, h, b_color_sang, thu[d]);
+            kt = false;
+            i = d;
+        }
+
+        if (_kbhit())
+        {
+            char cs;
+            char c = _getch();
+            if (c == -32)
+            {
+                kt = true;
+                c = _getch();
+                if (c == 72)
+                {
+                    if (yp != y)
+                    {
+                        yp -= 2;
+                        d = i - 1;
+                    }
+                    else
+                    {
+                        yp = y + h * (n - 1);
+                        d = (i - 1 + (n)) % n;
+                    }
+                }
+                else if (c == 80)
+                {
+                    if (yp != y + h * (n - 1))
+                    {
+                        yp += 2;
+                        d = i + 1;
+                    }
+                    else
+                    {
+                        yp = y;
+                        d = (i + 1) % n;
+                    }
+                }
+            }
+            else if (c == 13)
+            {
+                system("cls");
+                system("COLOR 80");
+                switch (d)
+                {
+                case 0:
+                    DisplayFilteredData(list, "Nhap ten ban muon hien thi?", CompareByName, value);
+                    break;
+                case 1:
+                    DisplayFilteredData(list, "Nhap dia chi ban muon hien thi?", CompareByAddress, value);
+                    break;
+                case 2:
+                    DisplayFilteredData(list, "Nhap so can cuoc cong dan ban muon hien thi?", CompareByCCCD, value);
+                    break;
+                case 3:
+                    DisplayFilteredData(list, "Nhap so bao danh ma ban muon hien thi?", CompareBySBD, value);
+                    break;
+                case 4:
+                {
+                    string yearString;
+                    DisplayFilteredData(list, "Nhap nam sinh ban muon hien thi?", CompareByYear, value);
+                    break;
+                }
+                case 5:
+                    DisplayFilteredData(list, "Ban muon hien thi gioi tinh nao? (Nam/Nu)", CompareByGender, value);
+                    break;
+                case 6:
+                    return;
+                    break;
+                }
+                system("cls");
+                system("COLOR 02");
+                n_box(x, y, w, h, t_color, b_color, thu, n);
+            }
+        }
+    }
+}
 
 void edit_infor(LinkedList &ds, string sbd, string name)
 {
     node *p = ds.search(sbd, name);
+    system("COLOR 0A");
+    string value;
+    string thu[] = {"                Ten", "               Dia Chi", "               CCCD",
+                    "                SBD", "              Nam Sinh", "              Gioi Tinh", "               Diem", "               Thoat"};
+    int x = 65, y = 5;
+    int w = 40, h = 2;
+    int n = 8;
+    int b_color = 4;
+    int t_color = 11;
+    int b_color_sang = 75;
+    inMenu(x, y, w, h, t_color, b_color, b_color_sang, thu, n);
+    int xp = x;
+    int yp = y;
+    int xcu = xp;
+    int ycu = yp;
+    int i = 0;
+    int d = 0;
+    bool kt = false;
     string New;
-    int d;
     string c;
     Date date;
-    int luachon;
-    do
+    while (true)
     {
-         system("cls");
-            SetColor1(7,2);
-         gotoXY(62,4);
-            cout  << "CAC THONG TIN CAN SUA" << endl;
-        Form1();
-        gotoXY(62,12);
-        cout << "7. Diem";
-        gotoXY(62,14);
-            cout << "Moi nhap lua chon :";
-            cin >> luachon;
-        while (luachon < 0 || luachon > 8)
+        if (kt == true)
         {
-            fflush(stdin);
-            gotoXY(62,16);
-            cout << "Lua chon cua ban khong hop le!!!";
-            cout << "Hay nhap lai: ";
-            cin >> luachon;
+            gotoXY(xcu, ycu);
+            thanh_sang(xcu, ycu, w, h, b_color, thu[i]);
+            xcu = xp;
+            ycu = yp;
+            thanh_sang(xp, yp, w, h, b_color_sang, thu[d]);
+            kt = false;
+            i = d;
         }
-        system("cls");
-            SetColor1(7,2);
-         gotoXY(22,4);
-            cout  << "CAC THONG TIN CAN SUA" << endl;
-           draw(20,2,50,15);
-           gotoXY(22,6);
-           cout << "1. Ten";
-           gotoXY(22,7);
-           cout << "2. Dia Chi";
-           gotoXY(22,8);
-           cout <<"3. CCCD";
-           gotoXY(22,9);
-           cout << "4. SBD";
-           gotoXY(22,10);
-           cout << "5. Nam Sinh";
-           gotoXY(22,11);
-           cout << "6. Gioi Tinh";
-            gotoXY(22,12);
-        cout << "7. Diem";
-        switch (luachon)
+
+        if (_kbhit())
         {
-        case 1:
-           {        gotoXY(70,4);    
-             cout << "Nhap lai ten: ";
-                cin.ignore();
-                getline(cin, New);
-                p->data.name = New;
-            break;}
-        case 2:
-          {   gotoXY(70,4);    
-             string newAddress;
-                cout << "Nhap lai dia chi: ";
-                cin.ignore();
-                getline(cin, newAddress);
-                 p->data.address = newAddress;
-            break;}
-         case 3:
-           {
-              gotoXY(70,4);    
-             string newCCCD;
-                cout << "Nhap so CCCD moi: ";
-                cin.ignore();
-                getline(cin, newCCCD);
-                 p->data.cccd = newCCCD;
-            break;}
-        case 4:
-          {   gotoXY(70,4); 
-            string sbdnew;
-                cout << "Nhap so bao danh moi: ";
-                cin.ignore();
-                getline(cin, sbdnew);
-                 p->data.sbd = sbdnew;
-            break;}
-            case 5:
-       {   int day, month, year;
-         gotoXY(70,4);
-                cout << "Nhap lai ngay/thang/nam sinh: " << endl;
-                gotoXY(70,5);
-                cout << "Nhap ngay: ";
-                cin >> day;
-                gotoXY(70,6);
-                cout << "Nhap thang: ";
-                cin >> month;
-                gotoXY(70,7);
-                cout << "Nhap nam: ";
-                cin >> year;
-                p->data.date.day = day;
-                p->data.date.month = month;
-                p->data.date.year = year;
-            break;}
-        case 6:
-          {       string newgt;
-            gotoXY(70,4);
-                cout << "Nhap gioi tinh: (Nam/Nu) ";
-                cin >> newgt;
-                p->data.gt = newgt;
-            break;}
-        case 7:
-          {  float newMath, newPhysics, newChemistry;
-            gotoXY(70,4);
-            cout<< "Nhap lai diem";
-            gotoXY(70,6);
-                cout << "Nhap diem toan: ";
-                cin >> newMath;
-                gotoXY(70,7);
-                cout << "Nhap diem ly: ";
-                cin >> newPhysics;
-                gotoXY(70,8);
-                cout << "Nhap diem hoa: ";
-                cin >> newChemistry;
-                p->data.to=newMath;
-                p->data.to=newPhysics;
-                p->data.ho = newChemistry;
-            break;}
+            char cs;
+            char c = _getch();
+            if (c == -32)
+            {
+                kt = true;
+                c = _getch();
+                if (c == 72)
+                {
+                    if (yp != y)
+                    {
+                        yp -= 2;
+                        d = i - 1;
+                    }
+                    else
+                    {
+                        yp = y + h * (n - 1);
+                        d = (i - 1 + (n)) % n;
+                    }
+                }
+                else if (c == 80)
+                {
+                    if (yp != y + h * (n - 1))
+                    {
+                        yp += 2;
+                        d = i + 1;
+                    }
+                    else
+                    {
+                        yp = y;
+                        d = (i + 1) % n;
+                    }
+                }
+            }
+            else if (c == 13)
+            {
+                system("cls");
+                system("COLOR 80");
+                p->data.display1();
+                switch (d)
+                {
+                case 0:
+                {
+                    gotoXY(80, 4);
+                    cout << "Nhap lai ten: ";
+                    cin.ignore();
+                    getline(cin, New);
+                    p->data.setname(New);
+                    break;
+                }
+                case 1:
+                {
+                    gotoXY(80, 4);
+                    string newAddress;
+                    cout << "Nhap lai dia chi: ";
+                    cin.ignore();
+                    getline(cin, newAddress);
+                    p->data.getaddress() = newAddress;
+                    break;
+                }
+                case 2:
+                {
+                    gotoXY(80, 4);
+                    string newCCCD;
+                    cout << "Nhap so CCCD moi: ";
+                    cin.ignore();
+                    getline(cin, newCCCD);
+                    p->data.getcccd() = newCCCD;
+                    break;
+                }
+                case 3:
+                {
+                    gotoXY(80, 4);
+                    string sbdnew;
+                    cout << "Nhap so bao danh moi: ";
+                    cin.ignore();
+                    getline(cin, sbdnew);
+                    p->data.getsbd() = sbdnew;
+                    break;
+                }
+                case 4:
+                {
+                    int day, month, year;
+                    gotoXY(80, 4);
+                    cout << "Nhap lai ngay/thang/nam sinh: " << endl;
+                    gotoXY(85, 5);
+                    cout << "Nhap ngay: ";
+                    cin >> day;
+                    gotoXY(85, 6);
+                    cout << "Nhap thang: ";
+                    cin >> month;
+                    gotoXY(85, 7);
+                    cout << "Nhap nam: ";
+                    cin >> year;
+                    p->data.setdate(day, month, year);
+                    break;
+                }
+                case 5:
+                {
+                    string newgt;
+                    gotoXY(80, 4);
+                    cout << "Nhap gioi tinh: (Nam/Nu) ";
+                    cin >> newgt;
+                    p->data.getgt() = newgt;
+                    break;
+                }
+                case 6:
+                {
+                    float newMath, newPhysics, newChemistry;
+                    gotoXY(80, 4);
+                    cout << "Nhap lai diem";
+                    gotoXY(85, 6);
+                    cout << "Nhap diem toan: ";
+                    cin >> newMath;
+                    gotoXY(85, 7);
+                    cout << "Nhap diem ly: ";
+                    cin >> newPhysics;
+                    gotoXY(85, 8);
+                    cout << "Nhap diem hoa: ";
+                    cin >> newChemistry;
+                    p->data.setto(newMath);
+                    p->data.setli(newPhysics);
+                    p->data.setho(newChemistry);
+                    break;
+                }
+                case 7:
+                    return;
+                    break;
+                }
+                gotoXY(50, 18);
+                cout << "THI SINH MOI SUA DA DUOC CAP NHAT";
+                gotoXY(0, 20);
+                Form();
+                cout << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                p->data.display();
+                cout << endl
+                     << "|";
+                for (int i = 0; i < 153; i++)
+                    cout << "-";
+                cout << "|" << endl;
+                system("pause");
+                system("cls");
+                system("COLOR 02");
+                n_box(x, y, w, h, t_color, b_color, thu, n);
+            }
         }
-         gotoXY(70,10);
-                        cout << "Da cap nhap thong tin\n";
-                        gotoXY(70,12);
-        cout << "Ban co muon sua thong tin nao nua khong? (y/n) ";
-        cin >> c;
-    } while (c == "y" || c == "Y");
+    }
 }
-float tim_nghanh(string s)
+string tim_nganh(float *dc, string s)
 {
-    string str ;
-    int result ;
+    string str = "";
+    int result;
     mofile();
     Nganhdaotao *p = pHead;
-            while (p != NULL)
-            {
-                result = strcmp(p->TenNganh.c_str(), s.c_str());
-                if (result == 0){
-                    return p->DiemChuan;
-                }
-                p = p->next;
-            }
-    cout << "Khong co ten nganh nay !" << endl;
-        return 0;
-}
-LinkedList check_dau(LinkedList &ds){
-    LinkedList dsdau;
-    node *p = ds.head;
-    float dc;
-    while (p!=NULL)
+    while (p != NULL)
     {
-        int i=0;
+        result = strcmp(p->TenNganh.c_str(), s.c_str());
+        if (result == 0)
+        {
+            *dc = p->DiemChuan;
+            return s;
+        }
+        p = p->next;
+    }
+    // cout << "Khong co ten nganh nay !" << endl;
+    return str;
+}
+LinkedList check_dau(LinkedList &ds)
+{
+    LinkedList dsdau;
+    node *p = ds.getHead();
+    float dc;
+    string s;
+    while (p != NULL)
+    {
+        int i = 0;
         do
         {
-            if (dc=tim_nghanh(p->data.wishes[i])) {
-                if (p->data.sum >= dc)
-                   { dsdau.insert(p->data, p->data.wishes[i]);break;}
+            s = tim_nganh(&dc, p->data.wishes[i]);
+            if (s != "")
+            {
+                if (p->data.getsum() >= dc)
+                {
+                    p->data.wishes.clear();
+                    p->data.wishes.push_back(s);
+                    dsdau.insert(p->data);
+                    break;
+                }
             }
-            else 
-            {cout<<"Khong co ten nganh da nhap";
-            break;
+            else
+            {
+                break;
             }
-         i++;    
-        }
-        while(i<p->data.wishes.size());
-        p=p->next;
+            i++;
+        } while (i < p->data.wishes.size());
+        p = p->next;
     }
     return dsdau;
 }
-

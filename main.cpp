@@ -1,100 +1,31 @@
 #include <iostream>
 #include <windows.h>
 #include <string>
+#include <unistd.h>
 #include "mylib.h"
 #include "main.h"
 
-using namespace std
-int x = 40;
+using namespace std;
+int x = 65;
 int y = 5;
-void box(int x, int y, int w, int h, int t_color, int b_color, string tieude)
-{
-    textcolor(b_color);
-    for (int iy = y + 1; iy <= y + h - 1; iy++)
-    {
-        for (int ix = x + 1; ix <= x + w - 1; ix++)
-        {
-            gotoXY(ix, iy);
-            cout << " ";
-        }
-    }
-    SetColor(7);
-    gotoXY(x + 1, y + 1);
-    cout << tieude;
-    textcolor(1);
-    SetColor(t_color);
-    if (h <= 1 || w <= 1)
-        return;
-    for (int ix = x; ix <= x + w; ix++)
-    {
-        gotoXY(ix, y);
-        cout << char(196);
-        gotoXY(ix, y + h);
-        cout << char(196);
-    }
-    for (int iy = y; iy <= y + h; iy++)
-    {
-        gotoXY(x, iy);
 
-        cout << char(179);
-        gotoXY(x + w, iy);
-        cout << char(179);
-    }
-    gotoXY(x, y);
-    cout << char(218);
-    gotoXY(x + w, y);
-    cout << char(191);
-    gotoXY(x, y + h);
-    cout << char(192);
-    gotoXY(x + w, y + h);
-    cout << char(217);
-}
-void n_box(int x, int y, int w, int h, int t_color, int b_color, string nd[], int n)
-{
-    for (int i = 0; i < n; i++)
-    {
-        box(x, y + i * 2, w, h, t_color, b_color, nd[i]);
-        if (i != 0)
-        {
-            gotoXY(x, y + i * 2);
-            cout << char(195);
-            gotoXY(x + 40, y + (i * 2));
-            cout << char(180);
-        }
-    }
-}
-void thanh_sang(int x, int y, int w, int h, int b_color, string tieude)
-{
-    textcolor(b_color);
-    for (int iy = y + 1; iy <= y + h - 1; iy++)
-    {
-        for (int ix = x + 1; ix <= x + w - 1; ix++)
-        {
-            gotoXY(ix, iy);
-            cout << " ";
-        }
-    }
-    SetColor(7);
-    gotoXY(x + 1, y + 1);
-    cout << tieude;
-}
-void inMenu(int x, int y, int w, int h, int t_color, int b_color, int b_color_sang, string nd[], int n)
-{
-    n_box(x, y, w, h, t_color, b_color, nd, n);
-    thanh_sang(x, y, w, h, b_color_sang, nd[0]);
-}
 void menu()
 {
+    system("cls");
     LinkedList danhsach;
+    LinkedList ds;
+    danhsach.docfile();
     ThiSinh ts;
     string sbd;
     string name;
     int option;
-    danhsach.docfile();
     ShowCur(0);
     int w = 40;
     int h = 2;
-    string nd[10] = {"XUAT DANH SACH CAC THI SINH", "THEM MOT THI SINH", "XOA MOT THI SINH", "SUA THONG TIN THI SINH", "TIM KIEM THONG TIN THI SINH", "SAP XEP DANH SACH THEO DIEM", "DANH DACH DAU DAI HOC", "DANH SACH DAU THEO NGANH", "THOAT"};
+    SetColor(75);
+    gotoXY(60, 3);
+    cout << "QUAN LI CAC THI SINH DU THI VAO MOT TRUONG DAI HOC";
+    string nd[10] = {"      XUAT DANH SACH CAC THI SINH", "         THEM MOT THI SINH", "         XOA MOT THI SINH", "        SUA THONG TIN THI SINH", "    TIM KIEM THONG TIN THI SINH", "     SAP XEP DANH SACH THEO DIEM", "        DANH DACH DAU DAI HOC", "       DANH SACH DAU THEO NGANH", "                THOAT"};
     int n = 9;
     bool kt = false;
     int b_color = 1;
@@ -159,11 +90,14 @@ void menu()
             else if (c == 13)
             {
                 system("cls");
-                system("COLOR F0");
+                system("COLOR 8F");
                 switch (d)
                 {
                 case 0:
                 {
+                    gotoXY(45, 2);
+                    cout << "DANH SACH CAC THI SINH DU THI VAO MOT TRUONG DAI HOC";
+                    gotoXY(0, 4);
                     danhsach.xuat();
                     system("pause");
                     system("COLOR 0A");
@@ -174,11 +108,22 @@ void menu()
                 {
                     output();
                     ts.input();
-                    danhsach.insert(ts);
-                    danhsach.ghifile();
-                    gotoXY(62,31);
-                    cout << "Da them thanh cong";
-                    gotoXY(70,3);
+                    if (danhsach.ktra(ts.getcccd()) == true)
+                    {
+                        draw1(25, 10, 60, 20);
+                        gotoXY(30, 12);
+                        cout << "Da ton tai thi sinh nay!!" << endl;
+                    }
+                    else
+                    {
+                        danhsach.insert(ts);
+                        ts.wishes.clear();
+                        danhsach.ghifile();
+                        draw1(25, 10, 60, 20);
+                        gotoXY(30, 12);
+                        cout << "Da them thanh cong";
+                    }
+                    gotoXY(28, 15);
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -186,81 +131,102 @@ void menu()
                 }
                 case 2:
                 {
-                    draw(60,2,90,10);
-                    SetColor1(7, 2);
-                    gotoXY(62,4);
+                    draw(60, 2, 90, 10);
+                    SetColor1(8, 2);
+                    gotoXY(62, 4);
                     cout << "Nhap thong tin ban muon xoa:" << endl;
-                        fflush(stdin);
-                        SetColor1(7, 4);
-                        gotoXY(62,6);
-                         cout << "Ten: ";
-                        getline(cin, name);
-                        gotoXY(62,7);
-                        cout << "sbd: ";
-                        getline(cin, sbd);
+                    SetColor1(8, 4);
+                    gotoXY(62, 5);
+                    cout << "Ten: ";
+                     gotoXY(62, 6);
+                    cout << "sbd: ";
+                    SetColor1(8, 3);
+                    gotoXY(68, 5);
+                    getline(cin, name);
+                   gotoXY(67, 6);
+                    getline(cin, sbd);
                     if (danhsach.search(sbd, name) != NULL)
                     {
                         if (danhsach.Delete(sbd, name) == true)
-                         {  gotoXY(62,9); 
-                            cout << "Da xoa thanh cong\n";}
+                        {
+                            draw1(62, 15, 97, 25);
+                            gotoXY(66, 17);
+                            cout << "Da xoa thanh cong";
+                            gotoXY(65, 19);
+                            system("pause");
+                        }
                         else
                         {
-                            gotoXY(62,9);
-                            cout << "Khong xoa duoc thong tin nay" << endl;
+                            draw1(62, 15, 97, 25);
+                            gotoXY(66, 17);
+                            cout << "Khong xoa duoc thong tin nay";
+                            gotoXY(65, 19);
+                            system("pause");
                         }
                     }
                     else
-                       {gotoXY(62,9); 
-                        cout << "Khong tim thay thong tin" << endl;}
-                    system("pause");
+                    {
+                        draw1(62, 15, 97, 25);
+                        gotoXY(66, 17);
+                        cout << "Khong tim thay thong tin" << endl;
+                        gotoXY(65, 19);
+                        system("pause");
+                    }
+                    danhsach.ghifile();
                     system("COLOR 0A");
                     system("cls");
                     break;
                 }
                 case 3:
                 {
-                     draw(60,2,90,10);
-                    SetColor1(7, 4);
-                    gotoXY(62,4);
+                    draw(60, 1, 90, 9);
+                    SetColor1(8, 4);
+                    gotoXY(62, 4);
                     cout << "Nhap thong tin ban muon sua:" << endl;
-                        fflush(stdin);
-                        SetColor1(7, 4);
-                        gotoXY(62,6);
-                         cout << "Ten: ";
-                        getline(cin, name);
-                        gotoXY(62,7);
-                        cout << "sbd: ";
-                        getline(cin, sbd);
+                    fflush(stdin);
+                    SetColor1(8, 4);
+                    gotoXY(62, 6);
+                    cout << "Ten: ";
+                     gotoXY(62, 7);
+                    SetColor1(8, 4);
+                    cout << "sbd: ";
+                    SetColor1(8, 3);
+                    gotoXY(68,6);
+                    getline(cin, name);
+                   gotoXY(67, 7);
+                    SetColor1(8, 3);
+                    getline(cin, sbd);
+                    system("cls");
                     if (danhsach.search(sbd, name) != NULL)
                     {
                         edit_infor(danhsach, sbd, name);
                         danhsach.ghifile();
-                        gotoXY(0,20);
-                        danhsach.xuat();
                     }
                     else
-                        {gotoXY(62,9); cout << "khong tim thay thong tin" << endl;}
-                    system("pause");
+                    {
+                        draw1(62, 15, 97, 25);
+                        gotoXY(66, 17);
+                        cout << "Khong tim thay thong tin" << endl;
+                        gotoXY(65, 19);
+                        system("pause");
+                    }
                     system("COLOR 0A");
                     system("cls");
                     break;
                 }
                 case 4:
                 {
-                    for (int i = 0; i < 50; i++)
-                        cout << "-";
-                    cout << endl;
-                    cout << "Ban muon tim kiem thong qua thong tin nao?" << endl;
                     search_info(danhsach);
-                    system("pause");
                     system("COLOR 0A");
                     system("cls");
                     break;
                 }
                 case 5:
                 {
+                    gotoXY(45, 2);
+                    cout << "DANH SACH THI SINH DA DUOC SAP XEP DIEM THEO THU TU GIAM DAN";
+                    gotoXY(0, 4);
                     danhsach.sapxepdiem();
-                    danhsach.xuat();
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -268,36 +234,29 @@ void menu()
                 }
                 case 6:
                 {
-                    LinkedList ds;
+                    gotoXY(60, 2);
+                    cout << "DANH SACH THI SINH DAU DAI HOC";
+                    gotoXY(0, 4);
                     ds = check_dau(danhsach);
-                     cout << "+";
-    for (int i = 0; i < 170; i++)
-        cout << "-";
-    cout << "+" << endl;
-    cout << "|" << setw(14) << "Ten" << setw(20) << "|";
-    cout << setw(10) << "CCCD" << setw(10) << "|";
-    cout << setw(5) << "GT" << setw(3) << "|";
-    cout << setw(14) << "Ngay Sinh" << setw(5) << "|";
-    cout << setw(12) << "Dia Chi" << setw(8) << "|";
-    cout << setw(8) << "SBD" << setw(8) << "|";
-    cout << setw(7) << "Toan" << setw(3) << "|";
-    cout << setw(5) << "Ly" << setw(3) << "|";
-    cout << setw(6) << "Hoa" << setw(3) << "|";
-    cout << setw(7) << "Tong" << setw(3) << "|";
-    cout << "Ten Nganh" << setw(13) << "|" << endl;
-    node *temp = ds.head;
-while (temp != NULL)
-{
-    temp->data.display();
-    cout << temp->data.wishes[0];
-    cout << endl;
-    temp = temp->next;
-}
-        cout << "|";
-        for (int i = 0; i < 153; i++)
-            cout << "-";
-        cout << "|" << endl;
-                    // ds.xuat();
+                    Form2();
+                    node *temp = ds.getHead();
+                    string tenganh;
+                    while (temp != NULL)
+                    {
+                        cout << "|";
+                        for (int i = 0; i < 165; i++)
+                            cout << "-";
+                        temp->data.display();
+                        tenganh = temp->data.wishes.front();
+                        cout << tim_ma_nganh(tenganh);
+                        cout << setw(5) << "|";
+                        cout << endl;
+                        temp = temp->next;
+                    }
+                    cout << "|";
+                    for (int i = 0; i < 165; i++)
+                        cout << "-";
+                    cout << "|" << endl;
                     system("pause");
                     system("COLOR 0A");
                     system("cls");
@@ -305,19 +264,77 @@ while (temp != NULL)
                 }
                 case 7:
                 {
-                    cout << "Nguoi dung chon: " << nd[i] << endl;
-                    system("pause");
+                    string tennganh, str, s;
+                    gotoXY(45, 1);
+                    cout << "Ban muon tra danh sach cua nganh nao? ";
+                    SetColor1(8, 4);
+                    getline(cin, tennganh);
+                    str = tennganh;
+                    str[0] = toupper(str[0]);
+                    s = tim_ma_nganh(str);
+                    if (s != "")
+                    {
+                        ds = check_dau(danhsach);
+                        gotoXY(50, 3);
+                        for (int i = 0; i < tennganh.size(); i++)
+                        {
+                            str[i] = toupper(str[i]);
+                        }
+                        SetColor1(8, 3);
+                        cout << "DANH SACH CAC THI SINH DAU NGANH " + str << endl;
+                        gotoXY(0, 4);
+                        Form2();
+                        node *temp = ds.getHead();
+                        string tenganh1;
+                        while (temp != NULL)
+                        {
+                            if (temp->data.wishes.front() == tennganh)
+                            {
+                                cout << "|";
+                                for (int i = 0; i < 165; i++)
+                                    cout << "-";
+                                temp->data.display();
+                                tenganh1 = temp->data.wishes.front();
+                                cout << tim_ma_nganh(tenganh1);
+                                cout << setw(5) << "|";
+                                cout << endl;
+                            }
+                            temp = temp->next;
+                        }
+                        cout << "|";
+                        for (int i = 0; i < 165; i++)
+                            cout << "-";
+                        cout << "|" << endl;
+                        system("pause");
+                    }
+                    else
+                    {
+                        draw1(62, 15, 97, 25);
+                        gotoXY(66, 17);
+                        cout << "Khong co ten nganh nay!!" ;
+                        gotoXY(63, 19);
+                        system("pause");
+                    }
+
                     system("COLOR 0A");
                     system("cls");
                     break;
                 }
                 case 8:
                 {
+                    gotoXY(70, 10);
+                    std::string text = "Thank you";
+                    for (char c : text)
+                    {
+                        std::cout << c;
+                        std::flush(std::cout);
+                        usleep(200000);
+                    }
                     exit(0);
                     break;
                 }
                 }
-                 n_box(x, y, w, h, t_color, b_color, nd, n);
+                n_box(x, y, w, h, t_color, b_color, nd, n);
             }
         }
     }

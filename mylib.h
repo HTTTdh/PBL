@@ -79,17 +79,45 @@ void textcolor(int x)
 	SetConsoleTextAttribute(mau, x);
 }
 
-
-void draw(int a,int b,int c, int d){
-	   gotoXY(a,b);for (int i=a;i<=c;i++) std::cout << "_";
-	   gotoXY(a,d);for (int i=a;i<=c;i++) std::cout << "_";
-	   for (int i=1;i<=d-b;i++) {gotoXY(a-1,b+i);std::cout << "|" << std::endl;}
-	   for (int i=1;i<=d-b;i++) {gotoXY(c+1,b+i);std::cout << "|" << std::endl;}
-}
 void SetColor1(int backgound_color, int text_color)
 {
     HANDLE hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
 
     int color_code = backgound_color * 16 + text_color;
     SetConsoleTextAttribute(hStdout, color_code);
+}
+void textbackground(int color) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+
+    // Xóa các cờ màu nền cũ
+    consoleInfo.wAttributes &= 0xFF0F;
+
+    // Đặt màu nền mới
+    consoleInfo.wAttributes |= (color << 4); 
+    SetConsoleTextAttribute(hConsole, consoleInfo.wAttributes);
+}
+void draw(int a,int b,int c, int d){
+
+	   gotoXY(a,b);for (int i=a;i<=c;i++) {textcolor(8);std::cout <<  char(196);}
+
+	   gotoXY(a,d);for (int i=a;i<=c;i++) {textcolor(8);std::cout <<  char(196);}
+	   for (int i=1;i<=d-b;i++) {textcolor(8);gotoXY(a-1,b+i);std::cout << char(179) << std::endl;}
+	   for (int i=1;i<=d-b;i++) {textcolor(8);gotoXY(c+1,b+i);std::cout << char(179) << std::endl;}
+}
+void draw1(int a,int b,int c, int d){
+	   gotoXY(a,b);for (int i=a;i<=c;i++) {textcolor(0);std::cout <<  char(196);}
+
+	   gotoXY(a,d);for (int i=a;i<=c;i++) {textcolor(0);std::cout <<  char(196);}
+	   for (int i=1;i<=d-b;i++) {textcolor(0);gotoXY(a-1,b+i);std::cout << char(179) << std::endl;}
+	   for (int i=1;i<=d-b;i++) {textcolor(0);gotoXY(c+1,b+i);std::cout << char(179) << std::endl;}
+       for (int i = b + 1; i < d; i++) {
+        for (int j = a + 1; j < c; j++) {
+            textcolor(0);
+            textbackground(9); 
+            gotoXY(j, i);
+            std::cout << ' ';
+        }
+    }
 }
