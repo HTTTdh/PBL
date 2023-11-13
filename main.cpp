@@ -107,7 +107,11 @@ void menu()
                 case 1:
                 {
                     output();
+                     gotoXY(10,40);
+                    SetColor1(4, 4);
+                    cout << "** Vui long nhap ten nganh co trong bang ben canh";
                     ts.input();
+                   
                     if (danhsach.ktra(ts.getcccd()) == true)
                     {
                         draw1(25, 10, 60, 20);
@@ -265,14 +269,15 @@ void menu()
                 case 7:
                 {
                     string tennganh, str, s;
+                    float dc;
                     gotoXY(45, 1);
                     cout << "Ban muon tra danh sach cua nganh nao? ";
                     SetColor1(8, 4);
                     getline(cin, tennganh);
                     str = tennganh;
                     str[0] = toupper(str[0]);
-                    s = tim_ma_nganh(str);
-                    if (s != "")
+                    s = tim_nganh(&dc, str);
+                    if (dc)
                     {
                         ds = check_dau(danhsach);
                         gotoXY(50, 3);
@@ -288,13 +293,14 @@ void menu()
                         string tenganh1;
                         while (temp != NULL)
                         {
-                            if (temp->data.wishes.front() == tennganh)
+                            tenganh1 = temp->data.wishes.front();
+                            tenganh1[0] = toupper(temp->data.wishes.front()[0]);
+                            if (tim_nganh(&dc, tenganh1) == s )
                             {
                                 cout << "|";
                                 for (int i = 0; i < 165; i++)
                                     cout << "-";
                                 temp->data.display();
-                                tenganh1 = temp->data.wishes.front();
                                 cout << tim_ma_nganh(tenganh1);
                                 cout << setw(5) << "|";
                                 cout << endl;
@@ -322,7 +328,22 @@ void menu()
                 }
                 case 8:
                 {
-                    gotoXY(70, 10);
+                    gotoXY(65, 3);
+                    cout << "TRUONG DAI HOC BACH KHOA - KHOA CONG NGHE THONG TIN";
+                    gotoXY(80, 7);
+                    cout << "DO AN CO SO LAP TRINH";
+                    gotoXY(58, 10);
+                    cout << "Ten de tai: QUAN LI DIEM THI CAC THI SINH DU THI VAO MOT TRUONG DAI HOC";
+                    gotoXY(70,15);
+                    cout << "Nguoi huong dan: THS. NGUYEN VAN NGUYEN";
+                    gotoXY(70,16);
+                    cout << "Sinh vien thuc hien: " ;
+                    gotoXY(75,17);
+                    cout << "Ho Thi Thu Thanh - 22T_DT1";
+                    gotoXY(75,18);
+                    cout << "Nguyen Thi Toan  - 22T_DT1";
+                    gotoXY(80, 20);
+                    SetColor1(8,7);
                     std::string text = "Thank you";
                     for (char c : text)
                     {

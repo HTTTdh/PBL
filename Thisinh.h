@@ -73,6 +73,7 @@ ThiSinh::ThiSinh(string cccd, string name, Date date, string address, string gt,
 };
 void ThiSinh::input()
 {
+    SetColor1(8,4);
     gotoXY(30,1);
     cout << "DIEN THONG TIN THI SINH";
     draw(20, 2, 62, 30);

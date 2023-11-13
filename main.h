@@ -340,7 +340,7 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                 {
                     gotoXY(80, 4);
                     cout << "Nhap lai ten: ";
-                    cin.ignore();
+                    cin.ignore(0);
                     getline(cin, New);
                     p->data.setname(New);
                     break;
@@ -350,9 +350,9 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                     gotoXY(80, 4);
                     string newAddress;
                     cout << "Nhap lai dia chi: ";
-                    cin.ignore();
+                    cin.ignore(0);
                     getline(cin, newAddress);
-                    p->data.getaddress() = newAddress;
+                    p->data.setaddress(newAddress);
                     break;
                 }
                 case 2:
@@ -360,9 +360,9 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                     gotoXY(80, 4);
                     string newCCCD;
                     cout << "Nhap so CCCD moi: ";
-                    cin.ignore();
+                    cin.ignore(0);
                     getline(cin, newCCCD);
-                    p->data.getcccd() = newCCCD;
+                    p->data.setcccd(newCCCD);
                     break;
                 }
                 case 3:
@@ -370,9 +370,9 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                     gotoXY(80, 4);
                     string sbdnew;
                     cout << "Nhap so bao danh moi: ";
-                    cin.ignore();
+                    cin.ignore(0);
                     getline(cin, sbdnew);
-                    p->data.getsbd() = sbdnew;
+                    p->data.setsbd(sbdnew);
                     break;
                 }
                 case 4:
@@ -398,7 +398,7 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                     gotoXY(80, 4);
                     cout << "Nhap gioi tinh: (Nam/Nu) ";
                     cin >> newgt;
-                    p->data.getgt() = newgt;
+                    p->data.setgt(newgt);
                     break;
                 }
                 case 6:
@@ -447,21 +447,23 @@ void edit_infor(LinkedList &ds, string sbd, string name)
 }
 string tim_nganh(float *dc, string s)
 {
+    string s1;
     string str = "";
     int result;
     mofile();
+     s1= s;
+    s1[0] = toupper(s[0]);
     Nganhdaotao *p = pHead;
     while (p != NULL)
     {
-        result = strcmp(p->TenNganh.c_str(), s.c_str());
+        result = strcmp(p->TenNganh.c_str(), s1.c_str());
         if (result == 0)
         {
             *dc = p->DiemChuan;
-            return s;
+            return s1;
         }
         p = p->next;
     }
-    // cout << "Khong co ten nganh nay !" << endl;
     return str;
 }
 LinkedList check_dau(LinkedList &ds)

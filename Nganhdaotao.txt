@@ -3,7 +3,7 @@ Cong nghe thuc pham,7540101,25
 Cong nghe thong tin,7480201,28
 Ki thuat o to,7520130,22.5
 Kinh te xay dung,7580301,19
-kien truc,7580101,19.15
+Kien truc,7580101,19.15
 Ki thuat may tinh,7480106,26
 Ki thuat moi truong,7520320,15
 Cong nghe sinh hoc,7420201,22.75

@@ -45,3 +45,4 @@ Nguyen Minh Ngoc,044338563921,Nu,23/7/2003,Nghe An,04637283,4.5,6,6.25,Quan li c
 Nguyen Manh Cuuong,038298974532,Nam,20/6/2004,Hue,04738229,5,7,4,Ki thuat nhiet;ki thuat co so ha tang;
 Le Anh Nuoi,047344552736,Nam,2/12/2004,Quang Binh,04536274,4,4,6,Cong nghe sinh hoc;Ki thuat nhiet;
 Huynh Thuy Nguyen,047382948372,Nu,12/2/2004,Quang Binh,05847778,4,4.25,5,Co khi hang khong;Kien truc;
+Ho Thi Thu Thanh,049304012028,Nu,5/1/2004,Quang nam,34006760,9,9,9,cong nghe thong tin;
