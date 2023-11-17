@@ -118,6 +118,12 @@ void Person::nhapthongtin()
     gotoXY(22, 14);
     cout << "Diem hoa: ";
     gotoXY(22, 15);
+    cout << "Diem van: ";
+    gotoXY(22,16);
+    cout << "Diem anh: ";
+    gotoXY(22,17);
+    cout << "Diem sinh: ";
+    gotoXY(22,18);
     cout << "So nguyen vong dang ki : ";
     gotoXY(31,4);
     SetColor1(8, 3);

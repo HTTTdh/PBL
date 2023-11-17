@@ -248,7 +248,7 @@ void menu()
                     while (temp != NULL)
                     {
                         cout << "|";
-                        for (int i = 0; i < 165; i++)
+                        for (int i = 0; i < 192; i++)
                             cout << "-";
                         temp->data.display();
                         tenganh = temp->data.wishes.front();
@@ -258,7 +258,7 @@ void menu()
                         temp = temp->next;
                     }
                     cout << "|";
-                    for (int i = 0; i < 165; i++)
+                    for (int i = 0; i < 192; i++)
                         cout << "-";
                     cout << "|" << endl;
                     system("pause");
@@ -298,7 +298,7 @@ void menu()
                             if (tim_nganh(&dc, tenganh1) == s )
                             {
                                 cout << "|";
-                                for (int i = 0; i < 165; i++)
+                                for (int i = 0; i < 192; i++)
                                     cout << "-";
                                 temp->data.display();
                                 cout << tim_ma_nganh(tenganh1);
@@ -308,7 +308,7 @@ void menu()
                             temp = temp->next;
                         }
                         cout << "|";
-                        for (int i = 0; i < 165; i++)
+                        for (int i = 0; i < 192; i++)
                             cout << "-";
                         cout << "|" << endl;
                         system("pause");
@@ -342,15 +342,18 @@ void menu()
                     cout << "Ho Thi Thu Thanh - 22T_DT1";
                     gotoXY(75,18);
                     cout << "Nguyen Thi Toan  - 22T_DT1";
-                    gotoXY(80, 20);
+                    gotoXY(85, 23);
                     SetColor1(8,7);
                     std::string text = "Thank you";
                     for (char c : text)
                     {
+                        SetColor1(14,7);
                         std::cout << c;
                         std::flush(std::cout);
                         usleep(200000);
                     }
+                    gotoXY(0,26);
+                    SetColor1(8,3);
                     exit(0);
                     break;
                 }
@@ -364,5 +367,6 @@ int main()
 {
     SetConsoleOutputCP(437);
     menu();
+    
     return 0;
 }

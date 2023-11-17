@@ -81,25 +81,26 @@ void output()
 {
     mofile();
     Nganhdaotao *temp = pHead;
-    cout << setw(140) << "DANH SACH CAC NGANH DAO TAO" << endl;
-    gotoXY(40,1);
+    gotoXY(113,1);
+    cout  << "DANH SACH CAC NGANH DAO TAO" << endl;
+    gotoXY(40,2);
     cout << setw(41) << "+";
     for (int i = 0; i < 87; i++)
         cout << "-";
     cout << "+" << endl;
-    gotoXY(80,2);
+    gotoXY(80,3);
     cout << "|" << setw(24) << "Ten Nganh" << setw(15) << "|";
     cout << setw(17) << "Ma Nganh" << setw(11) << "|";
     cout << setw(18) << "Diem Chuan" << setw(3) << "|" << endl;
     int j=0;
     while (temp != NULL)
     {
-        gotoXY(80,3+j);
+        gotoXY(80,4+j);
         cout << "|";
         for (int i = 0; i < 87; i++)
             cout << "-";
         cout << "|" ;
-        gotoXY(80,4+j);
+        gotoXY(80,5+j);
         cout << "|" << temp->TenNganh << setw(39 - (temp->TenNganh).length()) << "|";
         cout << setw(16) << temp->MaNganh << setw(12) << "|";
         cout << setw(12) << temp->DiemChuan << setw(9) << "|" ;
@@ -107,11 +108,16 @@ void output()
         temp = temp->next;
     }
     pHead = NULL;
-    gotoXY(80,j+1);
+    gotoXY(80,j+2);
     cout << "|";
     for (int i = 0; i < 87; i++)
         cout << "-";
     cout << "|" << endl;
+     gotoXY(80,j+4);
+    cout << "+";
+    for (int i = 0; i < 87; i++)
+        cout << "-";
+    cout << "+" << endl;
 }
 
 string capitalizeFirstLetter(string str)

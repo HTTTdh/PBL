@@ -133,7 +133,7 @@ void DisplayFilteredData(LinkedList &list, const string &message, CompareFunc co
         if (compareFunc(p->data, compareValue))
         {
             cout << "|";
-            for (int i = 0; i < 153; i++)
+            for (int i = 0; i < 180; i++)
                 cout << "-";
             p->data.display();
             cout << endl;
@@ -141,7 +141,7 @@ void DisplayFilteredData(LinkedList &list, const string &message, CompareFunc co
         p = p->next;
     }
     cout << "|";
-    for (int i = 0; i < 153; i++)
+    for (int i = 0; i < 180; i++)
     {
         cout << "-";
     }
@@ -263,7 +263,7 @@ void edit_infor(LinkedList &ds, string sbd, string name)
     system("COLOR 0A");
     string value;
     string thu[] = {"                Ten", "               Dia Chi", "               CCCD",
-                    "                SBD", "              Nam Sinh", "              Gioi Tinh", "               Diem", "               Thoat"};
+                    "                SBD", "              Nam Sinh", "              Gioi Tinh", "                 Diem", "               Thoat"};
     int x = 65, y = 5;
     int w = 40, h = 2;
     int n = 8;
@@ -403,7 +403,7 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                 }
                 case 6:
                 {
-                    float newMath, newPhysics, newChemistry;
+                    float newMath, newPhysics, newChemistry, newvan, newanh, newsinh;
                     gotoXY(80, 4);
                     cout << "Nhap lai diem";
                     gotoXY(85, 6);
@@ -415,9 +415,21 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                     gotoXY(85, 8);
                     cout << "Nhap diem hoa: ";
                     cin >> newChemistry;
+                    gotoXY(85, 9);
+                    cout << "Nhap diem van: ";
+                    cin >> newvan;
+                    gotoXY(85,10);
+                    cout << "Nhap diem anh: ";
+                    cin >> newanh;
+                    gotoXY(85, 11);
+                    cout << "Nhap diem sinh: ";
+                    cin >> newsinh;
                     p->data.setto(newMath);
                     p->data.setli(newPhysics);
                     p->data.setho(newChemistry);
+                    p->data.setvan(newvan);
+                    p->data.setanh(newanh);
+                    p->data.setsinh(newsinh);
                     break;
                 }
                 case 7:
@@ -429,12 +441,12 @@ void edit_infor(LinkedList &ds, string sbd, string name)
                 gotoXY(0, 20);
                 Form();
                 cout << "|";
-                for (int i = 0; i < 153; i++)
+                for (int i = 0; i < 180; i++)
                     cout << "-";
                 p->data.display();
                 cout << endl
                      << "|";
-                for (int i = 0; i < 153; i++)
+                for (int i = 0; i < 180; i++)
                     cout << "-";
                 cout << "|" << endl;
                 system("pause");
@@ -466,34 +478,33 @@ string tim_nganh(float *dc, string s)
     }
     return str;
 }
+
 LinkedList check_dau(LinkedList &ds)
 {
     LinkedList dsdau;
     node *p = ds.getHead();
-    float dc;
-    string s;
     while (p != NULL)
     {
-        int i = 0;
-        do
+        for (int i = 0; i < p->data.wishes.size(); i++)
         {
-            s = tim_nganh(&dc, p->data.wishes[i]);
+            float dc;
+            string s = tim_nganh(&dc, p->data.wishes[i]);
             if (s != "")
             {
-                if (p->data.getsum() >= dc)
+                if (p->data.getkhoi() == "A00" && p->data.getsuma() >= dc)
                 {
-                    p->data.wishes.clear();
-                    p->data.wishes.push_back(s);
-                    dsdau.insert(p->data);
+                    ThiSinh candidate(p->data.getcccd(), p->data.getname(), p->data.getdate(), p->data.getaddress(), p->data.getgt(), p->data.getsbd(), p->data.getto(), p->data.getli(), p->data.getho(), p->data.getvan(), p->data.getanh(), p->data.getsinh(), {s}, p->data.getkhoi());
+                    dsdau.insert(candidate);
+                    break;
+                }
+                else if (p->data.getkhoi() == "A01" && p->data.getsuma1() >= dc)
+                {
+                    ThiSinh candidate(p->data.getcccd(), p->data.getname(), p->data.getdate(), p->data.getaddress(), p->data.getgt(), p->data.getsbd(), p->data.getto(), p->data.getli(), p->data.getho(), p->data.getvan(), p->data.getanh(), p->data.getsinh(), {s}, p->data.getkhoi());
+                    dsdau.insert(candidate);
                     break;
                 }
             }
-            else
-            {
-                break;
-            }
-            i++;
-        } while (i < p->data.wishes.size());
+        }
         p = p->next;
     }
     return dsdau;
